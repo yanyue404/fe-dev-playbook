@@ -4,179 +4,203 @@ sidebarDepth: 2
 
 # 终端
 
-本篇将会介绍 zsh 这个 shell 的强大之处以及 iterm2 这个强大的现代化终端，将两个工具结合使用即酷炫又实用。  
-注：本文只会介绍实际开发中使用频率比较高的用法，该工具的强大功能并未全部介绍完。如有兴趣可查阅官方文档继续学习。
+- [玩好 Terminal 终端](https://github.com/yanyue404/blog/issues/42)
 
-## iterm2
+## 导航栏
 
-> iterm2 取代了默认的 Terminal，它将带给你现代化的体验以及任何你想要的功能
+- [gitBash](#gitbash)
+- [conEmu](#conemu)
+- [vim](#vim)
+- [cmd](#cmd)
+- [Windows Terminal](Windows-terminal)
 
-### 安装 iterm2
+### 快捷键补充
 
-这里我们直接去[官网](https://www.iterm2.com/)进行 download
+- [vscode](#vscode)
+- [chrome](#chrome)
 
-### 快捷键
+## gitBash
 
-熟练使用快捷键是程序员的基本操守
+- `cd` 切换路径
+  - `cd E:`切换盘符
+  - `cd ~` 退回到系统根路径
+  - `cd Desktop/` 进入桌面（注意：需要在根路径）
+  - `cd Front\ End` 切换文件夹
+  - `cd ../..`或者`cd Front\ End/smart/FE/` 执行多条命令（注意绝对路径和相对路径）
+  - `快速导入路径的方法` => 直接将待编辑文件或文件夹拖入终端中即可
+- `pwd`显示当前路径
+- `touch`创建文件
+- `mv a.html b.html` a.html 文件重命名为 b.html
+- `rm` 移除文件
+  - `rm -r`删除文件夹（递归删除）
+  - `rm -rf` 删除文件夹（强制删除）
+- `rmdir`删除文件夹（只能删除空文件夹，不常用）
+- `ls` 列出当前根目录下的所有文件
+  - `ls -R` 举当前路径下的全部文件并展开所有子文件夹
+- `cat README.md` 查看文件内容（一次性将内容全部显示）
+- `less README.md` 查看文件内容（显示部分信息） 空格键 滚动一页  
+  回车键 滚动一行 Q 退出命令 h 显示帮助页面
+- `clear/ctrl+l` 清空命令窗口
+- `exit` 可以直接退出窗口
+- `git help`查看帮助命令
 
-#### 唤醒热键
+### 光标相关
 
-给终端加一个快速唤醒/隐藏的快捷键是必须要做的，否则用鼠标找到终端的快捷方式再打开这种做法不仅慢而且逼格低，设置方式
- `iterm2` -> `Preferences` -> `Keys` -> `Hotkey` 
+- `ctrl + U/K` 删除光标左/右侧的所有内容
+- `ctrl + W`/`Alt + D` 删除光标左/右侧的单词
+- `Ctrl + A`移动光标到整条命令的起始位置
+- `Ctrl + E` 移动光标到整条命令的结束位置
+- `Alt + B`/`Alt + F` 根据单词向左/右移动光标
 
-![](https://gw.alicdn.com/tfs/TB1AHfOXvb2gK0jSZK9XXaEgFXa-1920-1048.jpg)
+## ConEmu
 
-这里我们建议使用 `option` + `space` 组合键来唤醒/隐藏终端
+- `ctrl+N` 当前 window 窗口创建新的 console 面板
+- `ctrl+shift+N` 创建新的 window 窗口
+- `ctrl+shift+delete` 关闭当前选中的 console 窗口
+- `alt+2` 右侧分屏
+- `ctrl+f` 查找关键字
+- `ctrl+tab+左/右箭头` 切换标签栏(左右箭头辅助，可以不要)
+- `ctrl+R` 重命名活动窗口页
+- `pwd` git bash 显示当前所在路径
 
-#### 其他快捷键
+## cmd
 
-以下快捷键与 chrome 快捷键类似，必须熟练使用
+将 **C:\Program Files\Git\bin** （或计算机上的任何文件）放在 PATH 中，则可以使用，因为 Git 在其中放置了 包括 sh.exe 在内的各种有用的工具。
 
-- `ctrl` + `a/e` 快速切换到当前正在输入的文本的头部／尾部
-- `ctrl` + `u` 清空当前输入
-- `cmd` + `T` 打开一个新的 iterm2 Tab
-- `cmd` + `方向键` 左右切换 Tab
-- `cmd` + `D` 分屏
-- `cmd` + `K` 清屏
-- `cmd` + `N` 打开一个新的 iterm2 窗口
-
-#### 透明度
-
-个人喜好这里建议给 iterm2 配置一个透明度，看起来体验感舒适很多
- `iterm2` -> `Preferences` -> `Profiles` -> `Window` -> `Transparency` 
-
-效果如下
-
-![](https://gw.alicdn.com/tfs/TB1Fm_RXuH2gK0jSZJnXXaT1FXa-1452-986.jpg)
-
-## zsh
-
-> Unix shell，一种壳层与命令行界面，是 UNIX 操作系统下传统的用户和计算机的交互界面。第一个用户直接输入命令来执行各种各样的任务。
-> 普通意义上的 shell 就是可以接受用户输入命令的程序。它之所以被称作 shell 是因为它隐藏了操作系统低层的细节。同样的 Unix 下的图形用户界面 GNOME 和 KDE，有时也被叫做“虚拟 shell”或“图形 shell”。
-
-目前常见的 shell 有 bash、sh、csh，ksh 等, 这里我们介绍 shell 中的极品 zsh。
-zsh 的强大之处随便列举就有以下几点，色彩高亮，命令提示，智能补全等等，下面我们会详细介绍
-这么牛逼的东西安装起来自然是及其麻烦的，好在已经有大神帮我们做了一个一键安装 zsh 的脚本[oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
-
-### 安装 zsh
-
-使用 curl 来安装
-
-```bash
-$ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```sh
+sh build.sh
 ```
 
-### 配置主题
+- `cd E:\` 切换盘符
+- `dir` 列出当前目录下的所有文件
+- `cd Desktop`切换到桌面
+- `cd "Front End"`进入带空格的文件夹
+- `mkdir`创建文件夹（`md`）
+- `cd.> demo.html` 创建空文件/(`type nul>.babelrc`)
+- `cls` 清空命令窗口
+- `tree`
+- `rd /S htdocs` 删除非空文件夹
+- `rmdir htdocs` 删除空文件夹
+- `shutdown -s -t 3600` 一小时后关机
+- `help` 帮助
 
-默认的 zsh 主题是非常丑并且展示的信息也很少的，这里 zsh 提供了多种主题供我们直接使用，当然你可以根据自己的喜欢来编写一个主题，这里我们使用 ys 这个主题。设置方式
+#### 用命令行做的事情
 
-```bash
-$ vim ~/.zshrc # 打开zsh配置文件
-10 ZSH_THEME = "ys" # 在第10行设置当前主题为ys
-$ source ~/.zshrc # 重新执行一遍zsh配置文件
+- 关闭占用端口
+
+1.  cmd 命令行和 git bash 都可以，先查看`9009`端口占用情况，记住 TCP 连接的最后一列数字，这个是`PID`,例子为`6692`;
+
+```batchfile
+netstat -aon|findstr 9009
 ```
 
-![](https://gw.alicdn.com/tfs/TB1OxHTXAH0gK0jSZPiXXavapXa-1442-870.jpg)
+过滤情况如下：
 
-### 插件
-
-zsh 提供了插件功能，我们可以通过插件来实现更加强大的功能
-
-#### autojump 插件
-
-必装插件没有之一，可以让你在任意目录之间进行跳转
-
-```bash
-$ brew install autojump
-$ vim ~/.zshrc
-
-61 plugins = (
-62  git 
-63  autojump 
-64 )
-
-$ source ~/.zshrc
+```shell
+TCP   127.0.0.1:9009   0.0.0.0:0   LISTENING  6692
 ```
 
-##### 使用 autojump
+2.  关闭进程,在任务管理器中，查找进程 PID 为`6692`，右键单击，选择`结束任务`
 
- `j` + `目录缩写` 快速去到你曾经进入过的目录
+## vim
 
-autojump 会自动对你进入过的目录进行记录并且定义权重，使用 j 命令可以迅速进入目录
+### 模式
 
-```bash
-$ j hub # 等价于 cd ~/workspace/github
-$ j hub # 如果当前目录不对，可以重复执行该命令，会自动根据权重依次匹配
-$ d # 会列出你曾经进入过的目录，输入前面的序号可以直接进入该目录
-```
+普通模式(Normal mode)
 
-#### [git 插件](https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/git)
+在普通模式中，有很多方法可以进入插入模式。比较普通的方式是按 a（append／追加）键或者 i（insert／插入）键。
 
-git 插件也是必装的插件，它提供了百余个 alias 来简化你的 git 命令，alias 列表可访问插件链接查看。以下几种是会被经常使用的命令，你也可以在.zshrc 中额外添加喜好的 alias
+插入模式(Insert mode)
 
-```bash
-$ g # 等价于git
-$ ga # 等价于git add
-$ gcmsg "" # 等价于git commit -m ""
-$ gco # 等价与git checkout
-$ gb # 等价于git branch
-```
+在这个模式中，大多数按键都会向文本缓冲中插入文本。大多数新用户希望文本编辑器编辑过程中一直保持这个模式。
 
-#### zsh-syntax-highlighting
+在插入模式中，可以按 ESC 键回到普通模式。
 
-既然 zsh 都已经安排上了，那 zsh 可用命令的高亮显示自然是不能落下，借助[zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md) 来实现命令高亮
+命令行模式(Command line mode)
 
-##### Preview
+在命令行模式中可以输入会被解释成并执行的文本。例如执行命令（:键），搜索（/和?键）或者过滤命令（!键）。在命令执行之后，Vim 返回到命令行模式之前的模式，通常是普通模式。
 
-使用前：
+### 三种常用模式的切换
 
-![zsh-syntax-highlighting 使用前](https://img.alicdn.com/tfs/TB1F_iCb4D1gK0jSZFsXXbldVXa-404-62.png)
+vim 启动进入普通模式，处于插入模式或命令行模式时只需要按 Esc 或者 Ctrl+\[(这在 vim 课程环境中不管用)即可进入普通模式。普通模式中按 i（插入）或 a（附加）键都可以进入插入模式，普通模式中按:进入命令行模式。命令行模式中输入 wq 回车后保存并退出 vim。
 
-使用后：
+命令行打开，用户环境变量 path 添加如下 D:\\Alike\\vim\\vim74
 
-![zsh-syntax-highlighting 使用后](https://img.alicdn.com/tfs/TB1H45BbW67gK0jSZFHXXa9jVXa-386-54.png)
+### 常用命令
 
-#### zsh-autosuggestions
+| 命令                | 操作                   |
+| ------------------- | ---------------------- |
+| :e E:\\             | 切换目录到 E 盘        |
+| i                   | 插入                   |
+| a                   | 插入                   |
+| :q                  | 退出                   |
+| :q!                 | 强制退出，不保存       |
+| :wq                 | 保存文件并退出         |
+| :wq!                | 强制保存并退出         |
+| :w <文件路径>       | 另存为                 |
+| :savesa <文件路径>  | 另存为                 |
+| vim 文件名/文件路径 | 打开文件或文件夹       |
+| :set nu             | 显示行号               |
+| gg                  | 到第一行               |
+| G                   | 到最后一行             |
+| nG                  | 跳到第 n 行            |
+| :u                  | 回退操作               |
+| ctrl+r              | 恢复上一步被撤销的操作 |
 
-它能够根据你的命令历史记录即时提示，个人对它的喜爱程度仅次于 autojump。BTW，每次用同事的电脑我都会想吐槽，还不是因为他没安装 [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md) 😏
+## chrome
 
-##### Preview
+- `ctrl+p` 查找当前网站已加载的资源文件
+- `ctrl+shift+p` 显示所有命令
+- `ctrl+l` 清空 console 面板数据
+- `ctrl+R`/ `f5` 正常重新加载
+- `ctrl+shift+R`/`shift f5` 硬性重新加载
+- `ctrl+h`查看历史记录
 
-<a href="https://asciinema.org/a/37390" target="_blank"><img src="https://asciinema.org/a/37390.png" width="400" /></a>
+其他
 
-#### last-working-dir
+- network 面板，点亮左上角那个像是摄像机的图标（鼠标移上去会提示 Capture screenshots），会打开新的一折叠面板，使用 trl + R 来启动截图调试。
 
-last-working-dir 插件，可以记录上一次退出命令行时候的所在路径，并且在下一次启动命令行的时候自动恢复到上一次所在的路径。这一切不需要我们进行任何操作，全部都是自动完成的
+## vscode
 
-##### Preview
+- `ctrl+p` 查找工作区的所有文件
+- `ctrl+shift+p`显示所有命令
+- `ctrl+b`侧边栏显示/隐藏
+- `ctrl+tab`多个打开的文件切换
+- `ctrl+shift+m`预览 markdown（自定义）
+- `ctrl+shift+[/]`折叠/打开代码块
+- `ctrl+Shift+F`整个文件夹中查找
+- `ctl+shift+n`新开编辑窗口
+- `ctrl+w`关闭编辑窗口
+- `ctrl+shift+w`关闭编辑器
+- `ctrl+\`新建分栏
+- `ctrl+g`跳转到行数
 
-![last-working-dir 示例](https://img.alicdn.com/tfs/TB1poGSb4D1gK0jSZFKXXcJrVXa-1764-1408.jpg)
+### 命令行
 
-#### [web-search](https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/web-search)
+- `code .` # 用 VSCode 打开当前目录
+- `code xxx` # 用 VSCode 打开某个目录
 
-web-search 集成了程序猿可能会用到的大部分的搜索引擎，在 iterm 中键入 `${搜索引擎} ${搜索关键词}` ，他可以直接打开对应的网页，缩短了你的搜索路径
+### 光标相关
 
-例如，输入 `google javascript` ，它会在我的浏览器中直接打开 https://www.google.com/search?q=javascript
+- `home/end`移动光标到行尾或行首
+- `shift+end/home`选择从光标至行尾或行首
+- `ctrl + shift+end/home`删除从行尾或行首到光标位置
+- `shift+alt+left/right`扩展/缩小选取范围：
+- `ctrl+delete`删除光标右侧的所有字
+- `ctrl+shift+l`同时选中所有匹配
+- `ctrl+u`回退到上一个光标操作位置
+- `ctrl+i`选中当前行
+- `ctrl+shift+左/右箭头`选中单个或者多个单词
 
-web-search 常用的搜索引擎如下:
+## Windows-terminal
 
- - google
- - github
- - baidu
- - stackoverflow
+> Windows Terminal 要求 windows 10 version 最低 18362.0
 
-### 进入目录
+在 Build 2019 大会上，微软公布了新的 Windows Terminal 命令行终端工具，这是一个现代化的快速终端应用程序，适用于命令行工具和 shell，包括命令提示符、PowerShell 和 WSL。Windows Terminal 应用程序带有几个新功能，如多选项卡支持，GPU 加速 DirectWrite/DirectX 文本呈现引擎，支持许多设置和配置选项，允许用户个性化终端的外观等等。因为早期预览没有完整功能，自定义选项只能通过编辑 JSON 文件，庆幸的是 Microsoft 提供了有关如何在 JSON 文件中配置设置和键绑定的一些说明，您甚至可以更改背景图像。
 
-无需输入 `cd` 命令  
-输入 `~` 等价于 `cd ～` 
+- [Windows10 如何安装 windows terminal](https://blog.csdn.net/SweetTool/article/details/94591100)
+- [关于-Windows Terminal](https://frxcat.fun/about/about_Windows_Terminal/)
 
-### 路径补全
+#### 参考链接
 
-\*nix 下的其他 shell 默认可以通过 tab 来实现路径补全，但是功能比起 zsh 的路径补全简直是太简单了。这里我们举一个例子
- `cd /u/l/b` 按下 tab 键自动帮你补全为 `cd /usr/local/bin/` 
-
-## 日常工作顺序
-
-这一套操作是本人日常使用的最频繁的操作，必须要熟练使用一气呵成。
-
-`alt + space` （唤醒iterm2） + `cmd + T` (建立新的iterm2窗口) + `j hub `(使用autojump的j命令快速跳转到github目录 ) + `code .` (在vscode打开) +  `spectatle`( cmd + alt + enter = 窗口全屏)
+- [https://www.cnblogs.com/kmsfan/p/vim_beginner.html](https://www.cnblogs.com/kmsfan/p/vim_beginner.html)
