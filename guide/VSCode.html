@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>VS Code | fe-dev-playbook</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    <link rel="icon" href="https://avatars1.githubusercontent.com/u/24217900?s=200&amp;v=4">
+    <meta name="description" content="打造舒适高效的前端开发环境">
+    <meta name="keywords" itemprop="keywords" content="打造舒适的前端开发环境">
+    <meta property="og:title" content="fe-dev-playbook">
+    <meta property="og:description" content="前端开发环境">
+    
+    <link rel="preload" href="/fe-dev-playbook/assets/css/0.styles.8138ca84.css" as="style"><link rel="preload" href="/fe-dev-playbook/assets/js/app.8b829ca5.js" as="script"><link rel="preload" href="/fe-dev-playbook/assets/js/2.58244656.js" as="script"><link rel="preload" href="/fe-dev-playbook/assets/js/1.6ba70183.js" as="script"><link rel="preload" href="/fe-dev-playbook/assets/js/37.46d57f6c.js" as="script"><link rel="prefetch" href="/fe-dev-playbook/assets/js/10.0720960b.js"><link rel="prefetch" href="/fe-dev-playbook/assets/js/11.2a97faa3.js"><link rel="prefetch" href="/fe-dev-playbook/assets/js/12.6b9ed61d.js"><link rel="prefetch" href="/fe-dev-playbook/assets/js/13.ebfb1f42.js"><link rel="prefetch" href="/fe-dev-playbook/assets/js/14.3e65117c.js"><link rel="prefetch" href="/fe-dev-playbook/assets/js/15.2d87bde7.js"><link rel="prefetch" href="/fe-dev-playbook/assets/js/16.9ca9aae8.js"><link rel="prefetch" href="/fe-dev-playbook/assets/js/17.3dbcb51f.js"><link rel="prefetch" href="/fe-dev-playbook/assets/js/18.4c170722.js"><link rel="prefetch" href="/fe-dev-playbook/assets/js/19.d8afd0ae.js"><link rel="prefetch" href="/fe-dev-playbook/assets/js/20.10e47ab9.js"><link rel="prefetch" href="/fe-dev-playbook/assets/js/21.0ad1d6a3.js"><link rel="prefetch" href="/fe-dev-playbook/assets/js/22.b7c97fbe.js"><link rel="prefetch" href="/fe-dev-playbook/assets/js/23.e20f55d6.js"><link rel="prefetch" href="/fe-dev-playbook/assets/js/24.894363fb.js"><link rel="prefetch" href="/fe-dev-playbook/assets/js/25.4f7566b2.js"><link rel="prefetch" href="/fe-dev-playbook/assets/js/26.12bb218b.js"><link rel="prefetch" href="/fe-dev-playbook/assets/js/27.17e0d8bb.js"><link rel="prefetch" href="/fe-dev-playbook/assets/js/28.968af0ea.js"><link rel="prefetch" href="/fe-dev-playbook/assets/js/29.dc450261.js"><link rel="prefetch" href="/fe-dev-playbook/assets/js/3.bc6bba9e.js"><link rel="prefetch" href="/fe-dev-playbook/assets/js/30.b23d21b8.js"><link rel="prefetch" href="/fe-dev-playbook/assets/js/31.6bdcee5c.js"><link rel="prefetch" href="/fe-dev-playbook/assets/js/32.15a0ad6b.js"><link rel="prefetch" href="/fe-dev-playbook/assets/js/33.5618359b.js"><link rel="prefetch" href="/fe-dev-playbook/assets/js/34.7e17a6da.js"><link rel="prefetch" href="/fe-dev-playbook/assets/js/35.744d1ba4.js"><link rel="prefetch" href="/fe-dev-playbook/assets/js/36.41015bb7.js"><link rel="prefetch" href="/fe-dev-playbook/assets/js/38.5ddeeac4.js"><link rel="prefetch" href="/fe-dev-playbook/assets/js/39.7f815d1c.js"><link rel="prefetch" href="/fe-dev-playbook/assets/js/4.45665f8a.js"><link rel="prefetch" href="/fe-dev-playbook/assets/js/5.7098d77a.js"><link rel="prefetch" href="/fe-dev-playbook/assets/js/6.0c0a0f39.js"><link rel="prefetch" href="/fe-dev-playbook/assets/js/7.6a854e57.js"><link rel="prefetch" href="/fe-dev-playbook/assets/js/vendors~docsearch.5e19b665.js">
+    <link rel="stylesheet" href="/fe-dev-playbook/assets/css/0.styles.8138ca84.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/fe-dev-playbook/" class="home-link router-link-active"><!----> <span class="site-name">fe-dev-playbook</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/fe-dev-playbook/guide/" class="nav-link router-link-active">
+  指南
+</a></div><div class="nav-item"><a href="https://github.com/yanyue404/fe-dev-playbook" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/fe-dev-playbook/guide/" class="nav-link router-link-active">
+  指南
+</a></div><div class="nav-item"><a href="https://github.com/yanyue404/fe-dev-playbook" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span></span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/fe-dev-playbook/guide/Shell.html" class="sidebar-link">终端</a></li><li><a href="/fe-dev-playbook/guide/Nodejs.html" class="sidebar-link">Node.js</a></li><li><a href="/fe-dev-playbook/guide/VSCode.html" aria-current="page" class="active sidebar-link">VS Code</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/fe-dev-playbook/guide/VSCode.html#目录" class="sidebar-link">目录</a></li><li class="sidebar-sub-header"><a href="/fe-dev-playbook/guide/VSCode.html#setting-json" class="sidebar-link">Setting.json</a></li><li class="sidebar-sub-header"><a href="/fe-dev-playbook/guide/VSCode.html#plugins" class="sidebar-link">Plugins</a></li><li class="sidebar-sub-header"><a href="/fe-dev-playbook/guide/VSCode.html#keybindings-json" class="sidebar-link">Keybindings.json</a></li><li class="sidebar-sub-header"><a href="/fe-dev-playbook/guide/VSCode.html#快捷命令" class="sidebar-link">快捷命令</a></li><li class="sidebar-sub-header"><a href="/fe-dev-playbook/guide/VSCode.html#相关资源" class="sidebar-link">相关资源</a></li><li class="sidebar-sub-header"><a href="/fe-dev-playbook/guide/VSCode.html#jsconfig-json" class="sidebar-link">jsconfig.json</a></li><li class="sidebar-sub-header"><a href="/fe-dev-playbook/guide/VSCode.html#vscode-配置-vue-代码片段" class="sidebar-link">vscode 配置 vue 代码片段</a></li><li class="sidebar-sub-header"><a href="/fe-dev-playbook/guide/VSCode.html#参考" class="sidebar-link">参考</a></li></ul></li><li><a href="/fe-dev-playbook/guide/BreakingPoint.html" class="sidebar-link">断点调试</a></li><li><a href="/fe-dev-playbook/guide/Ts.html" class="sidebar-link">TypeScript</a></li><li><a href="/fe-dev-playbook/guide/Git.html" class="sidebar-link">Git</a></li><li><a href="/fe-dev-playbook/guide/Chrome.html" class="sidebar-link">Chrome</a></li><li><a href="/fe-dev-playbook/guide/Whistle.html" class="sidebar-link">Whistle</a></li><li><a href="/fe-dev-playbook/guide/Fe.html" class="sidebar-link">前端开发</a></li><li><a href="/fe-dev-playbook/guide/Vim.html" class="sidebar-link">Vim</a></li><li><a href="/fe-dev-playbook/guide/Command.html" class="sidebar-link">Shell命令</a></li><li><a href="/fe-dev-playbook/guide/Utils.html" class="sidebar-link">Utils</a></li><li><a href="/fe-dev-playbook/guide/Tips.html" class="sidebar-link">前端开发小提示</a></li><li><a href="/fe-dev-playbook/guide/Algorithm.html" class="sidebar-link">算法</a></li><li><a href="/fe-dev-playbook/guide/Github.html" class="sidebar-link">Github 工作流</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="vs-code"><a href="#vs-code" class="header-anchor">#</a> VS Code</h1> <blockquote><p>https://github.com/yanyue404/blog/issues/185</p></blockquote> <p>VS Code 毫无疑问是目前最强大的编辑器，没有之一，凭借自身丰富的插件体系以及优秀的断点调试能力迅速成为最火热的编辑器。</p> <h2 id="目录"><a href="#目录" class="header-anchor">#</a> 目录</h2> <ul><li><a href="#Setting.json">1. Setting.json</a></li> <li><a href="#Plugins">2. Plugins</a></li> <li><a href="#Keybindings.json">3. Keybindings.json</a></li> <li><a href="#%E5%BF%AB%E6%8D%B7%E5%91%BD%E4%BB%A4">4. 快捷命令</a></li> <li><a href="#%E7%9B%B8%E5%85%B3%E8%B5%84%E6%BA%90">5. 相关资源</a></li> <li><a href="#jsconfig.json">6. jsconfig.json</a></li> <li><a href="#%E5%8F%82%E8%80%83">7. 参考</a></li></ul> <h2 id="setting-json"><a href="#setting-json" class="header-anchor">#</a> Setting.json</h2> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> settting <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ! 大部分情况不需要自动格式化</span>
+  <span class="token comment">// &quot;css.validate&quot;: false,</span>
+  <span class="token comment">// &quot;less.validate&quot;: false,</span>
+  <span class="token comment">// &quot;scss.validate&quot;: false,</span>
+  <span class="token string-property property">&quot;editor.formatOnSave&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;eslint.enable&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;stylelint.enable&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;editor.codeActionsOnSave&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token string-property property">&quot;source.fixAll.eslint&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;source.fixAll.stylelint&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">// ! 基本外观配置项 -- start</span>
+  <span class="token string-property property">&quot;breadcrumbs.enabled&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;editor.fontSize&quot;</span><span class="token operator">:</span> <span class="token number">13.5</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;editor.tabSize&quot;</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;files.autoSave&quot;</span><span class="token operator">:</span> <span class="token string">&quot;afterDelay&quot;</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;editor.cursorStyle&quot;</span><span class="token operator">:</span> <span class="token string">&quot;block&quot;</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;editor.fontFamily&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Fira Code&quot;</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;editor.fontLigatures&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;editor.lineHeight&quot;</span><span class="token operator">:</span> <span class="token number">21</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;editor.lineNumbers&quot;</span><span class="token operator">:</span> <span class="token string">&quot;on&quot;</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;editor.minimap.enabled&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;editor.matchBrackets&quot;</span><span class="token operator">:</span> <span class="token string">&quot;always&quot;</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;editor.rulers&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token number">120</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;editor.snippetSuggestions&quot;</span><span class="token operator">:</span> <span class="token string">&quot;top&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 注释改成绿色</span>
+  <span class="token string-property property">&quot;editor.tokenColorCustomizations&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">comments</span><span class="token operator">:</span> <span class="token string">&quot;#009933&quot;</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;workbench.startupEditor&quot;</span><span class="token operator">:</span> <span class="token string">&quot;none&quot;</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;emmet.triggerExpansionOnTab&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;emmet.includeLanguages&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token string-property property">&quot;vue-html&quot;</span><span class="token operator">:</span> <span class="token string">&quot;html&quot;</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">javascript</span><span class="token operator">:</span> <span class="token string">&quot;javascriptreact&quot;</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">wxml</span><span class="token operator">:</span> <span class="token string">&quot;html&quot;</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;emmet.syntaxProfiles&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token string-property property">&quot;vue-html&quot;</span><span class="token operator">:</span> <span class="token string">&quot;html&quot;</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">javascript</span><span class="token operator">:</span> <span class="token string">&quot;javascriptreact&quot;</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;view-in-browser.customBrowser&quot;</span><span class="token operator">:</span> <span class="token string">&quot;chrome&quot;</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;workbench.colorTheme&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Solarized Dark&quot;</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;workbench.sideBar.location&quot;</span><span class="token operator">:</span> <span class="token string">&quot;left&quot;</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;workbench.iconTheme&quot;</span><span class="token operator">:</span> <span class="token string">&quot;vscode-icons&quot;</span><span class="token punctuation">,</span>
+  <span class="token comment">// 将当前行代码高亮显示</span>
+  <span class="token string-property property">&quot;workbench.colorCustomizations&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token string-property property">&quot;editor.lineHighlightBackground&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#135564&quot;</span><span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;editor.lineHighlightBorder&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#135564&quot;</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;explorer.confirmDelete&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;editor.multiCursorModifier&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ctrlCmd&quot;</span><span class="token punctuation">,</span>
+  <span class="token comment">// 在使用搜索功能时，将这些文件夹/文件排除在外</span>
+  <span class="token string-property property">&quot;search.exclude&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token string-property property">&quot;**/node_modules&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;**/logs&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;package-lock.json&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;yarn.lock&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">// 这些文件将不会显示在工作空间中</span>
+  <span class="token string-property property">&quot;files.exclude&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token string-property property">&quot;**/.git&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;**/.svn&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">// 支持 import 别名 @</span>
+  <span class="token string-property property">&quot;path-autocomplete.pathMappings&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token string-property property">&quot;@&quot;</span><span class="token operator">:</span> <span class="token string">&quot;${folder}/src&quot;</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">// Guides 插件设置缩进参考</span>
+  <span class="token string-property property">&quot;guides.normal.color.dark&quot;</span><span class="token operator">:</span> <span class="token string">&quot;rgba(91, 91, 91, 0.6)&quot;</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;guides.normal.color.light&quot;</span><span class="token operator">:</span> <span class="token string">&quot;rgba(220, 220, 220, 0.7)&quot;</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;guides.active.color.dark&quot;</span><span class="token operator">:</span> <span class="token string">&quot;rgba(210, 110, 210, 0.6)&quot;</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;guides.active.color.light&quot;</span><span class="token operator">:</span> <span class="token string">&quot;rgba(200, 100, 100, 0.7)&quot;</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;guides.active.style&quot;</span><span class="token operator">:</span> <span class="token string">&quot;dashed&quot;</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;guides.normal.style&quot;</span><span class="token operator">:</span> <span class="token string">&quot;dashed&quot;</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;guides.stack.style&quot;</span><span class="token operator">:</span> <span class="token string">&quot;dashed&quot;</span><span class="token punctuation">,</span>
+  <span class="token comment">// todo-tree</span>
+  <span class="token string-property property">&quot;todo-tree.general.tags&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;TODO:&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;FIXME:&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;NOTE:&quot;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;todo-tree.highlights.defaultHighlight&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">gutterIcon</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;todo-tree.highlights.customHighlight&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token string-property property">&quot;TODO:&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token literal-property property">foreground</span><span class="token operator">:</span> <span class="token string">&quot;#fff&quot;</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">background</span><span class="token operator">:</span> <span class="token string">&quot;#ffbd2a&quot;</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">iconColour</span><span class="token operator">:</span> <span class="token string">&quot;#ffbd2a&quot;</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;FIXME:&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token literal-property property">foreground</span><span class="token operator">:</span> <span class="token string">&quot;#fff&quot;</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">background</span><span class="token operator">:</span> <span class="token string">&quot;#f06292&quot;</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">icon</span><span class="token operator">:</span> <span class="token string">&quot;flame&quot;</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">iconColour</span><span class="token operator">:</span> <span class="token string">&quot;#f06292&quot;</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;NOTE:&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token literal-property property">foreground</span><span class="token operator">:</span> <span class="token string">&quot;#fff&quot;</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">background</span><span class="token operator">:</span> <span class="token string">&quot;#f06292&quot;</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">icon</span><span class="token operator">:</span> <span class="token string">&quot;flame&quot;</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">iconColour</span><span class="token operator">:</span> <span class="token string">&quot;#f06292&quot;</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">// ! 基本外观配置项 -- end</span>
+  <span class="token comment">// ? 自定义 git</span>
+  <span class="token string-property property">&quot;git.ignoreMissingGitWarning&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;git.autofetch&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;git.confirmSync&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token comment">// 如果你的VSCode安装了Vetur插件，以下配置是需要的</span>
+  <span class="token comment">// 这能阻止Vetur对Vue代码进行检测，提高性能</span>
+  <span class="token comment">// &quot;vetur.format.enable&quot;: false,</span>
+  <span class="token comment">// &quot;vetur.validation.template&quot;: false,</span>
+  <span class="token comment">// &quot;vetur.validation.script&quot;: false,</span>
+  <span class="token comment">// &quot;vetur.format.defaultFormatter.scss&quot;: &quot;none&quot;,</span>
+  <span class="token comment">// ? 格式化 prettier start</span>
+  <span class="token string-property property">&quot;editor.defaultFormatter&quot;</span><span class="token operator">:</span> <span class="token string">&quot;esbenp.prettier-vscode&quot;</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;[javascript]&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token string-property property">&quot;editor.defaultFormatter&quot;</span><span class="token operator">:</span> <span class="token string">&quot;esbenp.prettier-vscode&quot;</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;[json]&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token string-property property">&quot;editor.defaultFormatter&quot;</span><span class="token operator">:</span> <span class="token string">&quot;esbenp.prettier-vscode&quot;</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;[vue]&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token string-property property">&quot;editor.defaultFormatter&quot;</span><span class="token operator">:</span> <span class="token string">&quot;esbenp.prettier-vscode&quot;</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">/* prettier-ignore*/</span>
+  <span class="token string-property property">&quot;prettier.printWidth&quot;</span><span class="token operator">:</span> <span class="token number">80</span><span class="token punctuation">,</span> <span class="token comment">// 超过最大值换行</span>
+  <span class="token string-property property">&quot;prettier.tabWidth&quot;</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token comment">// 缩进级别的空格数</span>
+  <span class="token string-property property">&quot;prettier.singleQuote&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token comment">// 要单引号</span>
+  <span class="token string-property property">&quot;prettier.trailingComma&quot;</span><span class="token operator">:</span> <span class="token string">&quot;none&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 尾随逗号</span>
+  <span class="token string-property property">&quot;prettier.bracketSpacing&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token comment">// 对象花括号与内容之间加空格</span>
+  <span class="token string-property property">&quot;prettier.semi&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token comment">// 句尾添加分号</span>
+  <span class="token string-property property">&quot;prettier.useTabs&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token comment">// 制表符缩进</span>
+  <span class="token string-property property">&quot;prettier.ignorePath&quot;</span><span class="token operator">:</span> <span class="token string">&quot;.prettierignore&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 格式化忽略的文件控制</span>
+  <span class="token comment">// ? 格式化 prettier end</span>
+  <span class="token comment">//分号和双引号确实不会再自动添加了，但是不会在方法括号之间插入空格，可以再加入这条配置即可</span>
+  <span class="token comment">// &quot;vetur.format.defaultFormatter.js&quot;: &quot;vscode-typescript&quot;,</span>
+  <span class="token string-property property">&quot;minapp-vscode.wxmlFormatter&quot;</span><span class="token operator">:</span> <span class="token string">&quot;prettier&quot;</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;minapp-vscode.prettier&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">parser</span><span class="token operator">:</span> <span class="token string">&quot;html&quot;</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;minapp-vscode.disableAutoConfig&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;vsicons.dontShowNewVersionMessage&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;extensions.ignoreRecommendations&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;files.associations&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token string-property property">&quot;*.cjson&quot;</span><span class="token operator">:</span> <span class="token string">&quot;jsonc&quot;</span><span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;*.wxss&quot;</span><span class="token operator">:</span> <span class="token string">&quot;css&quot;</span><span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;*.wxs&quot;</span><span class="token operator">:</span> <span class="token string">&quot;javascript&quot;</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;diffEditor.ignoreTrimWhitespace&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;todo-tree.tree.showScanModeButton&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;editor.guides.indentation&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;timeline.excludeSources&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;timeline.localHistory&quot;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;editor.cursorBlinking&quot;</span><span class="token operator">:</span> <span class="token string">&quot;phase&quot;</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;editor.cursorSmoothCaretAnimation&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="plugins"><a href="#plugins" class="header-anchor">#</a> Plugins</h2> <ul><li><a href="https://github.com/shanalikhan/code-settings-sync" target="_blank" rel="noopener noreferrer">Settings Sync<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> - 使用 Github GIST 在多台计算机上同步 Visual Studio 代码设置</li> <li><a href="https://github.com/joelday/vscode-docthis" target="_blank" rel="noopener noreferrer">Document This<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> - JS Doc 生成</li> <li>Live Server - 为静态和动态页面启动具有实时重新加载功能的开发本地服务器</li> <li><a href="https://github.com/prettier/prettier-vscode" target="_blank" rel="noopener noreferrer">Prettier<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> - 代码格式化</li> <li><a href="https://github.com/Gruntfuggly/todo-tree" target="_blank" rel="noopener noreferrer">Todo Tree<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> - 树状图显示 todo 列表</li> <li><a href="https://github.com/Microsoft/vscode-chrome-debug" target="_blank" rel="noopener noreferrer">Debugger for Chrome<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> - 从 VS Code 调试在 Google Chrome 中运行的 JavaScript 代码</li> <li><a href="https://github.com/intellism/vscode-comment-translate" target="_blank" rel="noopener noreferrer">Comment Translate<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> - vscode 注释翻译, 快速阅读源码</li> <li>Bracket Pair Colorizer 2 - 彩虹括号</li> <li>Project Manager - 多项目文件夹管理，方便切换</li> <li>Search node_modules</li> <li>Better Comments</li> <li>Git History + GitLens — Git supercharged</li> <li>Path Intellisense + Path Autocomplete + Auto Rename Tag</li> <li>Guides - 缩进线自定义</li> <li>Tabnine - 人工智能代码提示</li> <li>vscode-icons</li> <li>wxml + minapp</li></ul> <p><strong>All List</strong></p> <ul><li>Guides</li> <li>auto-close-tag v0.5.7</li> <li>auto-rename-tag v0.1.3</li> <li>better-comments v2.0.5</li> <li>bracket-pair-colorizer-2 v0.1.4</li> <li>code-runner v0.10.0</li> <li>code-settings-sync v3.4.3</li> <li>codelf v11.7.0</li> <li>comment-translate v1.4.2</li> <li>debugger-for-chrome v4.12.8</li> <li>docthis v0.7.1</li> <li>EditorConfig v0.15.1</li> <li>HTMLHint v0.7.0</li> <li>npm-intellisense v1.3.0</li> <li>open-in-browser v2.0.0</li> <li>path-autocomplete v1.13.6</li> <li>path-intellisense v1.4.2</li> <li>prettier-vscode v4.7.0</li> <li>project-manager v11.0.1</li> <li>todo-tree v0.0.176</li> <li>vetur v0.24.0</li> <li>view-in-browser v0.0.5</li> <li>vscode-eslint v2.1.5</li> <li>vscode-icons v10.1.1</li> <li>gitLens v10.2.1</li></ul> <h2 id="keybindings-json"><a href="#keybindings-json" class="header-anchor">#</a> Keybindings.json</h2> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// Place your key bindings in this file to overwrite the defaults</span>
+<span class="token comment">// 将键绑定放入此文件中以覆盖默认值</span>
+<span class="token keyword">const</span> keybindings <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token comment">// ctrl+d 删除一行</span>
+  <span class="token punctuation">{</span>
+    <span class="token literal-property property">command</span><span class="token operator">:</span> <span class="token string">&quot;editor.action.copyLinesDownAction&quot;</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">key</span><span class="token operator">:</span> <span class="token string">&quot;ctrl+d&quot;</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">when</span><span class="token operator">:</span> <span class="token string">&quot;editorTextFocus &amp;&amp; !editorReadonly&quot;</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">//viewInBrowser修改</span>
+  <span class="token punctuation">{</span>
+    <span class="token literal-property property">key</span><span class="token operator">:</span> <span class="token string">&quot;alt+1&quot;</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">command</span><span class="token operator">:</span> <span class="token string">&quot;extension.openInDefaultBrowser&quot;</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">// ctrl+shift+/多行注释</span>
+  <span class="token punctuation">{</span>
+    <span class="token literal-property property">key</span><span class="token operator">:</span> <span class="token string">&quot;ctrl+shift+/&quot;</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">command</span><span class="token operator">:</span> <span class="token string">&quot;editor.action.blockComment&quot;</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">when</span><span class="token operator">:</span> <span class="token string">&quot;editorTextFocus&quot;</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">//回车换行</span>
+  <span class="token punctuation">{</span>
+    <span class="token literal-property property">key</span><span class="token operator">:</span> <span class="token string">&quot;shift+enter&quot;</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">command</span><span class="token operator">:</span> <span class="token string">&quot;editor.action.insertLineAfter&quot;</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">when</span><span class="token operator">:</span> <span class="token string">&quot;editorTextFocus &amp;&amp; !editorReadonly&quot;</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">// 打开格式好的 md</span>
+  <span class="token punctuation">{</span>
+    <span class="token literal-property property">key</span><span class="token operator">:</span> <span class="token string">&quot;ctrl+shift+m&quot;</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">command</span><span class="token operator">:</span> <span class="token string">&quot;markdown.showPreview&quot;</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">when</span><span class="token operator">:</span> <span class="token string">&quot;editorLangId == 'markdown'&quot;</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">// 快速所边栏</span>
+  <span class="token punctuation">{</span>
+    <span class="token literal-property property">key</span><span class="token operator">:</span> <span class="token string">&quot;ctrl+1&quot;</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">command</span><span class="token operator">:</span> <span class="token string">&quot;workbench.view.explorer&quot;</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    <span class="token literal-property property">key</span><span class="token operator">:</span> <span class="token string">&quot;ctrl+2&quot;</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">command</span><span class="token operator">:</span> <span class="token string">&quot;workbench.view.search&quot;</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    <span class="token literal-property property">key</span><span class="token operator">:</span> <span class="token string">&quot;ctrl+3&quot;</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">command</span><span class="token operator">:</span> <span class="token string">&quot;workbench.view.scm&quot;</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    <span class="token literal-property property">key</span><span class="token operator">:</span> <span class="token string">&quot;ctrl+4&quot;</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">command</span><span class="token operator">:</span> <span class="token string">&quot;workbench.view.debug&quot;</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    <span class="token literal-property property">key</span><span class="token operator">:</span> <span class="token string">&quot;ctrl+5&quot;</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">command</span><span class="token operator">:</span> <span class="token string">&quot;workbench.view.extensions&quot;</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="快捷命令"><a href="#快捷命令" class="header-anchor">#</a> 快捷命令</h2> <blockquote><p>官方所有快捷键：https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf</p></blockquote> <p>外观：</p> <p>General</p> <ul><li>Ctrl+Shift+P, F1 Show Command Palette</li> <li>Ctrl+P Quick Open, Go to File…</li> <li>Ctrl+Shift+N New window/instance</li> <li>Ctrl+Shift+W Close window/instance</li> <li>Ctrl+, User Settings</li> <li>Ctrl+K Ctrl+S Keyboard Shortcuts</li></ul> <p>全局：</p> <ul><li>显示/隐藏左侧目录栏 ctrl + b</li> <li>控制台终端显示与隐藏：ctrl + ~</li> <li>新建一个窗口 : ctrl + shift + n</li> <li>ctrl+ shift + f 全局搜索 （需要光标在资源管理器才可）</li> <li>拆分编辑器 : ctrl + \</li> <li>光标选择拆分编辑器的组合 Ctrl+ 1 / 2 / 3 Focus into 1st, 2nd or 3rd editor group</li> <li>切换窗口 Ctrl+K Ctrl+ ←/→ Focus into previous/next editor group</li> <li>关闭编辑器窗口 : ctrl + w</li> <li>关闭所有窗口 : ctrl + k + w</li> <li>打开快捷键设定： ctrl + k ctrl + s</li></ul> <p>文件</p> <ul><li>切換本窗口固定的文件：ctrl + tab （建议主加）</li> <li>打开最近打开的文件夹：ctrl + r</li> <li>打开新的命令窗：ctrl + shift + c</li> <li>打开文件所在文件加： ctrl + o</li> <li>打开文件所在更目录的文件夹：ctrl + k，ctrl + o</li></ul> <p>fold 快捷命令：</p> <ul><li>折叠当前： ctrl + shift + [</li> <li>打开折叠： ctrl + shift + ]</li> <li>折叠区域内代码的快捷键： ctrl + k ctrl + 0-9 (0 是完全折叠)</li> <li>展开所有折叠区域代码快捷键： ctrl + k ctrl + j</li> <li>折叠区域内 level1 代码的快捷键： ctrl + k ctrl + 1</li> <li>折叠区域内 level2 代码的快捷键： ctrl + k ctrl + 2</li> <li>折叠区域内 level3 代码的快捷键： ctrl + k ctrl + 3</li></ul> <p>光标：</p> <ul><li>光标跳到下一个单词： ctrl+ LEFT/RIGHT</li> <li>光标移动到行首或者行末：home/end</li> <li>向上滚动和向下滚动 Ctrl+↑ / ↓</li> <li>快速回到顶部或底部： ctrl + home/end</li> <li>代码块花括号的光标移动： ctrl + shift + <code>\</code></li> <li>切换光标从编辑器到资源管理器： ctrl + shift + E</li> <li>跳转到指定行 ctrl + G</li> <li>选择整行 ctrl + l</li> <li>选择所有匹配项（已选中的单词） ctrl + shift + l</li> <li>选中括号里的内容：命令面板找到命令 “选择括号所有内容</li></ul> <p>编辑：</p> <ul><li>移动选中的行 alt+ UP/DOWN</li> <li>从光标处选择到行或行尾： shift + home/end</li> <li>代码格式化：shift + alt +f</li> <li>选中并格式化 ： ctrl + k ctrl + f</li> <li>复制当前行 ctrl + C</li> <li>剪切当前行（删除并复制） ctrl + X</li> <li>粘贴 ctrl + v</li> <li>向下复制一行 ctrl + d（快捷键自定义）</li> <li>删除整行 ctrl + shift + K</li> <li>编辑器中查找 ctrl + f</li> <li>编辑器中替换 ctrl + h</li></ul> <h2 id="相关资源"><a href="#相关资源" class="header-anchor">#</a> 相关资源</h2> <ul><li><a href="https://github.com/tonsky/FiraCode" target="_blank" rel="noopener noreferrer">FiraCode<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> - 编程字体</li></ul> <h2 id="jsconfig-json"><a href="#jsconfig-json" class="header-anchor">#</a> jsconfig.json</h2> <p>以 vue 项目为例：</p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;compilerOptions&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;baseUrl&quot;</span><span class="token operator">:</span> <span class="token string">&quot;.&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;paths&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;core/*&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;./src/core/*&quot;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;shared/*&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;./src/shared/*&quot;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;compiler/*&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;./src/compiler/*&quot;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;sfc/*&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;./src/sfc/*&quot;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;server/*&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;./src/server/*&quot;</span><span class="token punctuation">]</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;target&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ES6&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;module&quot;</span><span class="token operator">:</span> <span class="token string">&quot;es6&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;allowSyntheticDefaultImports&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;include&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;src/**/*&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;test/**/*&quot;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;exclude&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;node_modules&quot;</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="vscode-配置-vue-代码片段"><a href="#vscode-配置-vue-代码片段" class="header-anchor">#</a> vscode 配置 vue 代码片段</h2> <p>在 vscode 中使用 ctrl+shift+p 打开一个选项窗口，然后找到配置用户代码片段，点击进去，输入 vue.json 找到对应的配置文件点击进去，然后粘贴下面配置替换即可。</p> <p><a href="https://img2020.cnblogs.com/blog/2217722/202101/2217722-20210114070719206-1064216065.png" target="_blank" rel="noopener noreferrer"><img src="https://img2020.cnblogs.com/blog/2217722/202101/2217722-20210114070719206-1064216065.png" alt="clipboard"><span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p><a href="https://img2020.cnblogs.com/blog/2217722/202101/2217722-20210114070719417-2062866199.png" target="_blank" rel="noopener noreferrer"><img src="https://img2020.cnblogs.com/blog/2217722/202101/2217722-20210114070719417-2062866199.png" alt="clipboard-1610579151127"><span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <div class="language- extra-class"><pre class="language-text"><code>{
+  // Place your snippets for vue here. Each snippet is defined under a snippet name and has a prefix, body and
+  // description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+  // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the
+  // same ids are connected.
+  // Example:
+  &quot;Print to console&quot;: {   // 描述信息
+    &quot;prefix&quot;: &quot;log&quot;,    // 前缀，在文件中输入这个关键词就能生成body里面的代码段了
+    &quot;body&quot;: [
+      &quot;console.log('$1');&quot;,
+      &quot;$2&quot;
+    ],
+    &quot;description&quot;: &quot;Log output to console&quot;    // 代码段详细的描述信息
+  },
+  &quot;Print to Vue.js template&quot;: {
+    &quot;prefix&quot;: &quot;vue&quot;,
+    &quot;body&quot;: [
+      &quot;&lt;template&gt;&quot;,
+      &quot;  &lt;div class=\&quot;$1\&quot;&gt;$2&lt;/div&gt;&quot;,   // \是为了转义双引号，光标默认停留在$1的位置，然后输出tab键进入$2位置，依次类推，找不到$之后就直接跳到行尾
+      &quot;&lt;/template&gt;&quot;,
+      &quot;&quot;,
+      &quot;&lt;script&gt;&quot;,
+      &quot;export default {&quot;,
+      &quot;  name: '',&quot;,
+      &quot;  components: {},&quot;,
+      &quot;  props: {},&quot;,
+      &quot;  data () {&quot;,
+      &quot;    return {}&quot;,
+      &quot;  },&quot;,
+      &quot;  computed: {},&quot;,
+      &quot;  watch: {},&quot;,
+      &quot;  created () {},&quot;,
+      &quot;  mounted () {},&quot;,
+      &quot;  methods: {}&quot;,
+      &quot;}&quot;,
+      &quot;&lt;/script&gt;&quot;,
+      &quot;&quot;,
+      &quot;&lt;style scoped lang=\&quot;less\&quot;&gt;&lt;/style&gt;&quot;,
+      &quot;&quot;
+    ],
+    &quot;description&quot;: &quot;generator vue template&quot;
+  }
+}
+
+</code></pre></div><p>这个时候你在.vue 的文件中输入 vue 就会生成出下面的代码模版。</p> <div class="language- extra-class"><pre class="language-text"><code>&lt;template&gt;
+  &lt;div class=&quot;&quot;&gt;&lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  name: '',
+  components: {},
+  props: {},
+  data () {
+    return {}
+  },
+  computed: {},
+  watch: {},
+  created () {},
+  mounted () {},
+  methods: {}
+}
+&lt;/script&gt;
+
+&lt;style scoped lang=&quot;less&quot;&gt;&lt;/style&gt;
+
+</code></pre></div><p>具体定制代码段的方法如下。</p> <p>进入<a href="https://snippet-generator.app/" target="_blank" rel="noopener noreferrer">https://snippet-generator.app/<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>这个网站，然后将你要生成代码块的代码片段丢到左侧位置，右侧会自动生成出对应的 vscode 的代码段，当然你也可以点击右侧上面的 tab 栏切换不同编辑器下的代码块，这里以 vscode 为例，将右侧的代码块复制粘贴到 vue.json 配置文件中，配置对应的代码前缀名称即可。</p> <p><img src="https://img2020.cnblogs.com/blog/2217722/202101/2217722-20210114070719574-2074808948.png" alt=""></p> <p>javascript.json</p> <div class="language-json extra-class"><pre class="language-json"><code>javascript.json <span class="token punctuation">{</span>
+  <span class="token comment">// Place your snippets for javascript here. Each snippet is defined under a snippet name and has a prefix, body and</span>
+  <span class="token comment">// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:</span>
+  <span class="token comment">// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the</span>
+  <span class="token comment">// same ids are connected.</span>
+  <span class="token comment">// Example:</span>
+  <span class="token property">&quot;Print to console&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;log&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;console.log('$1');&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;$2&quot;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Log output to console&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;console.log a variable&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;cv&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token string">&quot;console.log('${0}:', ${0})&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;console.dir&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;cd&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;console.dir($1);&quot;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Code snippet for \&quot;console.dir\&quot;&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;console.error&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ce&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;console.error($1);&quot;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Code snippet for \&quot;console.error\&quot;&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;console.info&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ci&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;console.info($1);&quot;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Code snippet for \&quot;console.info\&quot;&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;console.log&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;cl&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;console.log($1);&quot;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Code snippet for \&quot;console.log\&quot;&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;console.warn&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;cw&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;console.warn($1);&quot;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Code snippet for \&quot;console.warn\&quot;&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;debugger&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;de&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;debugger$1&quot;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Code snippet for \&quot;debugger\&quot;&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;promise&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;prom&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token string">&quot;return new Promise((resolve, reject) =&gt; {\n\t${1}\n});&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Creates and returns a new Promise in the standard ES6 syntax&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;thenCatch&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;thenc&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token string">&quot;.then((${1:result}) =&gt; {\n\t${2}\n}).catch((${3:err}) =&gt; {\n\t${4}\n});&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Add the .then and .catch methods to handle promises&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;try/catch&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;tc&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token string">&quot;try {\n\t${0}\n} catch (${1:err}) {\n\t\n}&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;try/catch/finally&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;tcf&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token string">&quot;try {\n\t${0}\n} catch (${1:err}) {\n\t\n} finally {\n\t\n}&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;throw new Error&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;tn&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token string">&quot;throw new ${0:error}&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;class&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;cla&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token string">&quot;class ${1:name} {\n\tconstructor (${2:arguments}) {\n\t\t${0}\n\t}\n}&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;constructor&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;con&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token string">&quot;constructor(${1:params}) {\n\t${0}\n}&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Add default constructor in a class in ES6 syntax&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;key/valuePair&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;kv&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token string">&quot;${1:key}: ${2:'value'}&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;key/value pair&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;forLoop&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;forl&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token string">&quot;for (let ${1:i} = 0; ${1:i} &lt; ${2:iterable}${3:.length}; ${1:i}++) {\n  ${4}\n}&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;for loop&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;forInLoop&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;fori&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token string">&quot;for (let ${1:key} in ${2:source}) {\n  if (${2:source}.hasOwnProperty(${1:key})) {\n    ${3}\n  }\n}&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;for in loop&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;forOfLoop&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;foro&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token string">&quot;for (let ${1:key} of ${2:source}) {\n  ${3}\n}&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;for of loop&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;ifStatement&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;if&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token string">&quot;if (${1:condition}) {\n  ${2}\n}&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;if statement&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;elseStatement&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;el&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token string">&quot;else {\n  ${1}\n}&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;else statement&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;if/elseStatement&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ife&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token string">&quot;if (${1:condition}) {\n  ${2}\n} else {\n  ${3}\n}&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;if/else statement&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;elseIfStatement&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ei&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token string">&quot;else if (${1:condition}) {\n  ${2}\n}&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;else if statement&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;methods&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;me&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token string">&quot;${1:methods}: {\n\t${0}\n},&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;watch value change&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;watch:value&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token string">&quot;watch: { &quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;  value: { &quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;   immediate: true, &quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;   handler() { &quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;    }&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;  }&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;}, &quot;</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;named function&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;fn&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token string">&quot;function ${1:name} (${2:arguments}) {\n\t${0}\n}&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;async function&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;afn&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token string">&quot;async function (${1:arguments}) {\n\t${0}\n}&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;async arrow function&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;aafn&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token string">&quot;async (${1:arguments}) =&gt; {\n\t${0}\n}&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;immediately-invoked function expression&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;iife&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token string">&quot;;(function (${1:arguments}) {\n\t${0}\n})(${2})&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;async immediately-invoked function expression&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;aiife&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token string">&quot;;(async (${1:arguments}) =&gt; {\n\t${0}\n})(${2})&quot;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>vue.json</p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token comment">// Place your snippets for vue here. Each snippet is defined under a snippet name and has a prefix, body and</span>
+  <span class="token comment">// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:</span>
+  <span class="token comment">// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the</span>
+  <span class="token comment">// same ids are connected.</span>
+  <span class="token comment">// Example:</span>
+  <span class="token property">&quot;Print to console&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 描述信息</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;log&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 前缀，在文件中输入这个关键词就能生成body里面的代码段了</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;console.log('$1');&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;$2&quot;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Log output to console&quot;</span> <span class="token comment">// 代码段详细的描述信息</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;Print to Vue.js template&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;vue&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token string">&quot;&lt;template&gt;&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;  &lt;div class=\&quot;$1\&quot;&gt;$2&lt;/div&gt;&quot;</span><span class="token punctuation">,</span> <span class="token comment">// \是为了转义双引号，光标默认停留在$1的位置，然后输出tab键进入$2位置，依次类推，找不到$之后就直接跳到行尾</span>
+      <span class="token string">&quot;&lt;/template&gt;&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;&lt;script&gt;&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;export default {&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;  name: '',&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;  components: {},&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;  props: {},&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;  data() {&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;    return {}&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;  },&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;  computed: {},&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;  watch: {},&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;  created() {},&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;  mounted() {},&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;  methods: {}&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;}&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;&lt;/script&gt;&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;&lt;style scoped lang=\&quot;scss\&quot;&gt;\n\n&lt;/style&gt;&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;&quot;</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;generator vue template&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;vue3 template&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;vue3&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token string">&quot;&lt;template&gt;&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;  &lt;div class=\&quot;$1\&quot;&gt;&lt;/div&gt;&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;&lt;/template&gt;&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;&lt;script setup&gt;\n\n&lt;/script&gt;&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;&lt;style lang=\&quot;scss\&quot; scoped&gt;\n\n&lt;/style&gt;&quot;</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;vue3 template&quot;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="参考"><a href="#参考" class="header-anchor">#</a> 参考</h2> <ul><li><a href="https://panjiachen.gitee.io/vue-element-admin-site/zh/guide" target="_blank" rel="noopener noreferrer">vue-element-admin - Doc 指南<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="https://zhuanlan.zhihu.com/p/125773296" target="_blank" rel="noopener noreferrer">那些你应该考虑卸载的 VSCode 扩展<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="https://zhuanlan.zhihu.com/p/30976584" target="_blank" rel="noopener noreferrer">能让你开发效率翻倍的 VSCode 插件配置（上）<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="https://zhuanlan.zhihu.com/p/35661521" target="_blank" rel="noopener noreferrer">能让你开发效率翻倍的 VSCode 插件配置（中）<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="https://www.cnblogs.com/alexander3714/p/14275318.html" target="_blank" rel="noopener noreferrer">玩转 Vscode-配置 vue 代码片段<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li>https://github.com/capaj/vscode-standardjs-snippets/tree/master</li> <li>https://github.com/sdras/vue-vscode-snippets</li></ul></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/fe-dev-playbook/guide/Nodejs.html" class="prev">
+        Node.js
+      </a></span> <span class="next"><a href="/fe-dev-playbook/guide/BreakingPoint.html">
+        断点调试
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/fe-dev-playbook/assets/js/app.8b829ca5.js" defer></script><script src="/fe-dev-playbook/assets/js/2.58244656.js" defer></script><script src="/fe-dev-playbook/assets/js/1.6ba70183.js" defer></script><script src="/fe-dev-playbook/assets/js/37.46d57f6c.js" defer></script>
+  </body>
+</html>
