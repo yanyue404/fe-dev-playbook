@@ -18,7 +18,7 @@
 ### 在线课程
 
 [数据结构-浙江大学](https://www.bilibili.com/video/av18586085?from=search&seid=15275956372728133584)  
-[清华大学-邓俊辉MOOC数据结构与算法全套](https://www.bilibili.com/video/av49361421?from=search&seid=2756779141930403558)
+[清华大学-邓俊辉 MOOC 数据结构与算法全套](https://www.bilibili.com/video/av49361421?from=search&seid=2756779141930403558)
 
 ### 文章
 

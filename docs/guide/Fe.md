@@ -16,27 +16,27 @@
 
 #### JSONP
 
-使用JSONP是前端解决跨域最快的方式，但是这种方式仍然需要后端小小支持下，这里我们给一个最简单的JSONP实现方式
+使用 JSONP 是前端解决跨域最快的方式，但是这种方式仍然需要后端小小支持下，这里我们给一个最简单的 JSONP 实现方式
 
 ```js
-var url = `https://api.test.com?jsoncallback=jsonpCb`
-var script = document.createElement('script')
-script.src = url
-document.getElementsByTagName('body')[0].appendChild(script)
-function jsonpCb (res) {
-    console.log(`接口数据${res}`)
+var url = `https://api.test.com?jsoncallback=jsonpCb`;
+var script = document.createElement("script");
+script.src = url;
+document.getElementsByTagName("body")[0].appendChild(script);
+function jsonpCb(res) {
+  console.log(`接口数据${res}`);
 }
 ```
 
-#### Chrome插件
+#### Chrome 插件
 
 [Access-Control-Allow-Origin](https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf?hl=zh-CN)
-本质是给接口的response header中添加`Access-Control-Allow-Origin: *`, 底层原理是通过Chrome提供的Api来实现
+本质是给接口的 response header 中添加`Access-Control-Allow-Origin: *`, 底层原理是通过 Chrome 提供的 Api 来实现
 
-#### Node代理
+#### Node 代理
 
-大部分前端框架提供给你的proxy功能本质上都是使用了`webpack-dev-server`的proxy功能，而`webpack-dev-server`的proxy功能本质上是本地启动了一个Node服务来实现请求的转发
-我们也可以自己用`egg|koa`框架来创建一个简单的本地Node服务
+大部分前端框架提供给你的 proxy 功能本质上都是使用了`webpack-dev-server`的 proxy 功能，而`webpack-dev-server`的 proxy 功能本质上是本地启动了一个 Node 服务来实现请求的转发
+我们也可以自己用`egg|koa`框架来创建一个简单的本地 Node 服务
 
 ```js
 // koa.js
@@ -56,9 +56,9 @@ app.listen(3000)
 fetch('http://api.test.com/getInfo') 替换为 fetch(`http://localhost:3000/api/getInfo`)
 ```
 
-## 纯前端下载excel
+## 纯前端下载 excel
 
-本节介绍在没有后端服务的情况下如何将数据下载为excel
+本节介绍在没有后端服务的情况下如何将数据下载为 excel
 使用[sheetJs](https://github.com/SheetJS/sheetjs)
 
 ```js
@@ -92,7 +92,7 @@ XLSX.writeFile(wb, filename) // 导出Excel
 
 ## 代码风格
 
-代码风格一直是程序员届争论不休的话题，这里根据本人多年开发经验以及数百个项目的开发体验，强烈建议抛弃eslint,prettier，不要让你的项目充斥着代码风格配置文件, 这里建议大家不要盲目模仿著名开源项目，这里以[React](https://github.com/facebook/react)为例,根目录下的独立文件有十几个与代码风格有关的文件就高达5个，实在是让人看了就头大
+代码风格一直是程序员届争论不休的话题，这里根据本人多年开发经验以及数百个项目的开发体验，强烈建议抛弃 eslint,prettier，不要让你的项目充斥着代码风格配置文件, 这里建议大家不要盲目模仿著名开源项目，这里以[React](https://github.com/facebook/react)为例,根目录下的独立文件有十几个与代码风格有关的文件就高达 5 个，实在是让人看了就头大
 <img src="https://img.alicdn.com/tfs/TB1uw5WmKH2gK0jSZJnXXaT1FXa-590-1500.jpg"  style="height:256px;">
 
 ### Standardjs
@@ -101,25 +101,25 @@ XLSX.writeFile(wb, filename) // 导出Excel
 $ npm i -g standard@13.0.0
 ```
 
-这里我们着重介绍一下[Standardjs@13.0.0](https://standardjs.com/readme-zhcn.html)这个代码规范工具，为什么我们使用它而不是eslint呢，这里我引用standardjs官方的介绍
+这里我们着重介绍一下[Standardjs@13.0.0](https://standardjs.com/readme-zhcn.html)这个代码规范工具，为什么我们使用它而不是 eslint 呢，这里我引用 standardjs 官方的介绍
 
-* 无须配置。 史上最便捷的统一代码风格的方式，轻松拥有。
-* 自动代码格式化。 只需运行 standard --fix 从此和脏乱差的代码说再见。
-* 提前发现风格及程序问题。 减少代码审查过程中反反复复的修改过程，节约时间。
+- 无须配置。 史上最便捷的统一代码风格的方式，轻松拥有。
+- 自动代码格式化。 只需运行 standard --fix 从此和脏乱差的代码说再见。
+- 提前发现风格及程序问题。 减少代码审查过程中反反复复的修改过程，节约时间。
 
-如果我不同意某条规则，可以改吗？  
+如果我不同意某条规则，可以改吗？
 
 <span style="color:red">不行。制定这套 standard 规范的目的就是让大家都不必再花时间浪费在无谓的代码风格之争上面了。关于缩进该用制表符还是空格这个问题已经争论了很久了，永远也没有答案。争论这个都可以把需求提前写完了。遵循 standard 规范，你就不用再犹豫了，毕竟不管怎样争论总归会选择一种风格的。希望大家也能在个人语义和普适价值上做一个权衡。</span>
 
 如果你非要自己去配置成百上千项的 ESLint 规则，那你可以直接使用 eslint-config-standard 来将个人配置包装在上层。
 
-小贴士：<span style="color:red">选择 standard 然后保持吧。把时间留下来解决其他有意义的问题！(^____^)/</span>
+小贴士：<span style="color:red">选择 standard 然后保持吧。把时间留下来解决其他有意义的问题！(^\_\_\_\_^)/</span>
 
 ### 使用版本
 
-这里建议使用standardjs@13.0.0而不是@14.0.0, 其中14.0.0中新增的几个React的开发规则个人觉得十分不合理，影响开发体验。Ref [#1447](https://github.com/standard/standard/issues/1447)
+这里建议使用standardjs@13.0.0而不是@14.0.0, 其中 14.0.0 中新增的几个 React 的开发规则个人觉得十分不合理，影响开发体验。Ref [#1447](https://github.com/standard/standard/issues/1447)
 
-#### 更好的使用Standardjs
+#### 更好的使用 Standardjs
 
-在VS Code安装standardjs插件后，我们还需要进行一些配置来启用standardjs，首先要保证你在全局或者当前目录安装了standard模块，然后
- `cmd + ,` 打开配置，添加 `"standard.autoFixOnSave": true, "standard.enable": true,` 来让VS Code启用standard，此时在你不符合规范的地方会给你高亮提示，并且开启保存自动格式化功能，在你保存文件时自动格式化你的文件。
+在 VS Code 安装 standardjs 插件后，我们还需要进行一些配置来启用 standardjs，首先要保证你在全局或者当前目录安装了 standard 模块，然后
+`cmd + ,` 打开配置，添加 `"standard.autoFixOnSave": true, "standard.enable": true,` 来让 VS Code 启用 standard，此时在你不符合规范的地方会给你高亮提示，并且开启保存自动格式化功能，在你保存文件时自动格式化你的文件。

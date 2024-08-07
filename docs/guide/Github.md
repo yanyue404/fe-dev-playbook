@@ -33,7 +33,6 @@ on:
     branches: [dev, master]
   pull_request:
     branches: [dev, master]
-
 ```
 
 #### 添加构建环境
@@ -42,14 +41,14 @@ on:
 
 ```yml
 strategy:
-    matrix:
-      os: [ubuntu-latest, macos-latest, windows-latest]
-      node: ["12", "13", "14"]
+  matrix:
+    os: [ubuntu-latest, macos-latest, windows-latest]
+    node: ["12", "13", "14"]
 name: install - ${{ matrix.os }} - ${{ matrix.node }}
 runs-on: ${{ matrix.os }}
 ```
 
-#### 定义job
+#### 定义 job
 
 我们的构建一般都包含多个任务，github 可以并行的执行这些任务来提升构建速度，并且可以指定任务之间的依赖关系
 
@@ -58,9 +57,9 @@ jobs:
   install: # 定义安装依赖的任务
     if: "!contains(github.event.head_commit.message, 'skip ci') && !contains(github.event.head_commit.message, '.md')" # 如果 commit 信息包含以下关键字则跳过该任务
     strategy: # 分别在三个操作系统的三种 Node.js 环境中运行任务
-        matrix:
-          os: [ubuntu-latest, macos-latest, windows-latest]
-          node: ["12", "13", "14"]
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        node: ["12", "13", "14"]
     name: install - ${{ matrix.os }} - ${{ matrix.node }}
     runs-on: ${{ matrix.os }}
     steps:
@@ -137,33 +136,33 @@ test:
 我们的应用的运行代码通常是用构建工具 如 tsc|babel|webpack 来生成的。但是我们提交到 github 的只有源代码。在这里我们在 CI 中进行构建任务后，需要将构建的产物上传。否则下一个发布任务将无法获得构建任务生成后的目录文件
 
 ```yml
-  build:
-    needs: [lint, test]
-    strategy:
-        matrix:
-          os: [ubuntu-latest, macos-latest, windows-latest]
-          node: ["12", "13", "14"]
-    name: build - ${{ matrix.os }} - ${{ matrix.node }}
-    runs-on: ${{ matrix.os }}
-    steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node }}
-      - name: Load node_modules
-        uses: actions/cache@v2
-        with:
-          path: |
-            node_modules
-            */*/node_modules
-          key: ${{ runner.os }}-${{ hashFiles('**/package.json') }}
-      - run: yarn build # 执行构建
-      - name: Upload artifact # 上传构建产物，这里我们的源码目录是 src，而实际运行的代码是构建后的 bin 目录
-        uses: actions/upload-artifact@v2
-        with:
-          name: build_output
-          path: bin # 上传 bin 目录
+build:
+  needs: [lint, test]
+  strategy:
+    matrix:
+      os: [ubuntu-latest, macos-latest, windows-latest]
+      node: ["12", "13", "14"]
+  name: build - ${{ matrix.os }} - ${{ matrix.node }}
+  runs-on: ${{ matrix.os }}
+  steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node }}
+    - name: Load node_modules
+      uses: actions/cache@v2
+      with:
+        path: |
+          node_modules
+          */*/node_modules
+        key: ${{ runner.os }}-${{ hashFiles('**/package.json') }}
+    - run: yarn build # 执行构建
+    - name: Upload artifact # 上传构建产物，这里我们的源码目录是 src，而实际运行的代码是构建后的 bin 目录
+      uses: actions/upload-artifact@v2
+      with:
+        name: build_output
+        path: bin # 上传 bin 目录
 ```
 
 #### 发布到 NPM
@@ -195,7 +194,8 @@ publish:
         name: build_output
         path: bin
     - name: Publish
-      run: | # 只有 commit 信息包含版本号的提交才进行发布，否则不需要发布。这里我们可以使用 lerna publish/version 或者 npm version 来进行发布
+      run:
+        | # 只有 commit 信息包含版本号的提交才进行发布，否则不需要发布。这里我们可以使用 lerna publish/version 或者 npm version 来进行发布
         if git log -1 --pretty=%B | grep "^[0-9]\+\.[0-9]\+\.[0-9]\+$";
         then
           echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
