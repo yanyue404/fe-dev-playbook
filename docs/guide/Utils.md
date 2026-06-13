@@ -4,98 +4,77 @@ sidebarDepth: 2
 
 # Utils
 
-本篇文章将介绍一些实用类的小工具来帮助我们从繁琐的鼠标操作中脱离出来
+本章介绍一些实用的效率工具与开发者网站，帮你从繁琐的鼠标操作中解放出来。工具尽量给出**跨平台**与**仍在活跃维护**的选择——这比「某个停更的明星软件」更重要。
 
-## Spectatle
+## 窗口管理
 
-[Spectatle](https://www.spectacleapp.com/)一款可以让你更加轻松快速的控制窗口大小的软件。
-快速实现窗口全屏/靠左/靠右/居中等展现形式, 建议快捷键设置如下。
+把窗口快速吸附到屏幕一半、四分之一或全屏，是高效多任务的基础。
 
-- `cmd` + `alt` + `enter` 全屏
-- `cmd` + `alt` + `<-` 靠左
+- **macOS**：[Rectangle](https://rectangleapp.com/)（开源、免费，Spectacle 的官方推荐继任者）；系统自带的「窗口贴靠」也已可用。
+- **Windows**：内置 **Snap Layouts**（`Win` + `Z`），或安装 [PowerToys](https://learn.microsoft.com/windows/powertoys/) 的 **FancyZones** 自定义网格布局。
 
-![](https://gw.alicdn.com/tfs/TB1ESaBXG67gK0jSZFHXXa9jVXa-1224-1066.jpg)
+> 注：早期流行的 Spectacle 已停止维护，新机器请直接用 Rectangle 或系统原生方案。
 
-## Dash
+## 效率启动器
 
-[Dash](https://kapeli.com/dash)是一个文档 API 文档浏览器，在单一窗口中可以浏览、搜索各 API 细节。使用效果如下图所示。
+用快捷键唤起、模糊搜索一切（应用、文件、剪贴板历史、计算、翻译……），是减少鼠标操作的利器。
 
-![](https://img.alicdn.com/tfs/TB1xPgeXNv1gK0jSZFFXXb0sXXa-1820-1206.png)
+- **macOS**：[Raycast](https://www.raycast.com/)（现代、可扩展，已基本取代 Alfred 的地位）。
+- **Windows**：[PowerToys Run](https://learn.microsoft.com/windows/powertoys/run)（`Alt` + 空格）。
 
-使用 VSCode 时可以在扩展中搜索 Dash，点击安装即可通过 `ctrl` + `h` 快捷键查找需要的 api 具体说明。
+## API 文档速查
 
-## Charles
+- [DevDocs](https://devdocs.io/)：免费、开源、可离线，聚合了几乎所有主流语言与框架的官方文档，浏览器内即可全文检索。
+- [Dash](https://kapeli.com/dash)（macOS）/ [Zeal](https://zealdocs.org/)（Windows / Linux）：离线 API 文档浏览器，可在 VS Code 中通过插件用快捷键直接查询当前光标处的 API。
 
-[Charles](https://www.charlesproxy.com)是一个代理服务器，简单的说法为当访问网站时，会由 Charles 代为获取请求相关数据，这样就达到了截取网络请求以及分析请求结果的目的。Charles 是在日常工作中常用的功能包括: 代理移动端设备的请求，将远程文件代理到本地文件等。
+## 抓包与网络代理
 
-### 代理移动端请求
+抓包用于查看、分析、篡改网络请求，常见场景包括：调试移动端请求、把线上资源代理到本地（Map Local）、模拟接口返回等。
 
-代理移动端设备的请求指的是：将移动设备的请求代理到 PC 的 Charles 服务，以此来抓包移动端设备的请求详细信息以及使得移动端设备可以打开我们的本地服务器的资源
+### 工具选择
 
-#### 开启设置
+- [Whistle](https://wproxy.org/whistle/)：基于 Node.js 的跨平台代理工具，前端友好、规则即文本、可版本化，**本手册有独立章节专门介绍，推荐前端优先使用**。
+- [Proxyman](https://proxyman.io/)（macOS，体验现代）/ [Charles](https://www.charlesproxy.com)（跨平台，老牌经典）：功能强大的 GUI 抓包工具。
+- 浏览器内调试：Chrome DevTools 的 **Network** 面板配合 **Overrides**（本地覆盖响应）已能覆盖很多前端调试需求，无需额外软件。
 
-为了可以在 Charles 中截取网络请求数据，首先需要将 Charles 设置为系统代理，即让 Charles 成为获取请求数据的委托代理方，具体操作为：选择菜单栏中 `proxy` -> `Mac OS X Proxy` ，使 `Mac OS X Proxy` 前出现 `✔️` 。
+### 抓包移动端 HTTPS 请求（通用流程）
 
-在 charles 中选择菜单栏 `proxy` -> `proxy settings` , 在弹出的对话框中填写端口号（默认为 8888），勾选”enable transparent http proxying“。
+无论使用 Charles 还是 Proxyman，移动端 HTTPS 抓包的核心步骤是一致的：
 
-![](https://img.alicdn.com/tfs/TB1.bFMaeH2gK0jSZFEXXcqMpXa-1172-1004.png)
+1. **同一局域网**：手机与电脑连接同一 WiFi。
+2. **设置代理**：手机 WiFi → HTTP 代理 → 手动 → 填写电脑 IP 与抓包工具端口（Charles 默认 `8888`）。
+   - 查看本机 IP：macOS / Linux 用 `ifconfig`（或 `ip addr`），Windows 用 `ipconfig`。
+3. **安装并信任根证书**：电脑端先安装抓包工具的根证书；移动端访问工具提供的证书地址下载安装，并在系统设置里**手动信任**该根证书（iOS 还需在「关于本机 → 证书信任设置」中开启）。
+4. **开启 SSL 代理**：在工具中配置需要解密的域名（如 `*.example.com`），即可看到 HTTPS 请求明文。
 
-#### 查看本机 IP
+> 提示：iOS 14+ 与 Android 7+ 对用户证书的信任策略更严格，App 若启用了证书绑定（SSL Pinning），普通抓包将无法解密——这是设计如此，属正常现象。
 
-使用 `ifconfig` 查看本机在当前局域网中的 IP 地址
+### Map Local：把线上请求指向本地文件
 
-![](https://gw.alicdn.com/tfs/TB1490_ahD1gK0jSZFyXXciOVXa-1444-858.jpg)
+当需要在线上环境验证本地改动时，可将某个线上资源重定向到本地文件：在 Charles 的 `Tools` → `Map Local` 中，配置「源地址（Map From）」与「本地目标文件（Map To）」即可。这样访问 `https://cdn.example.com/app.js` 时，实际加载的是你本地的 `app.js`。
 
-`enx` 代表当前的第 x 块网卡，当前我们只有一块网卡，故 `192.168.199.161` 是我们当前的局域网 ip 地址
-
-#### 移动端开启代理设置
-
-确保手机和电脑连接同一个无线网络，并对无线网络进行代理设置
-
-`WIFI` -> `HTTP代理` -> `手动` -> `填写IP以及端口号`
-
-<img src="https://gw.alicdn.com/tfs/TB1rXl.aeP2gK0jSZFoXXauIVXa-750-1334.jpg"  style="height:556px; width:316px; ">
-
-连接成功后 Charles 会弹窗提示，选择 `allow` 。至此该移动设备的请求都会被 Charles 所代理，我们可以在 PC 端的 Charles 中看到移动设备所有 `http` 请求的详细信息。
-
-#### 抓包 https 请求
-
-由于 https 协议的请求安全系数较高，在截取此类请求数据时，需要安装证书等操作，此处单独列出 https 协议请求的操作步骤。
-
-1. 在 PC 上安装证书。在 charles 中选择菜单栏 `help` -> `SSL Proxying` -> `Install Charles Root Certificate` , 安装成功后，双击安装的证书进行信任处理。
-
-![](https://img.alicdn.com/tfs/TB16ONTabj1gK0jSZFuXXcrHpXa-1478-930.png)
-
-2. 在 Charles 选择菜单栏 `proxy` -> `SSL Proxying Settings` ，通过 `add` 添加需要抓包的域名，并选中 `enable SSL Proxying ` 。至此，在 PC 端中即可对 https 请求进行抓包处理。
-
-![](https://gw.alicdn.com/tfs/TB1MrR.aeL2gK0jSZPhXXahvXXa-1482-1102.jpg)
-
-3. 如果要截取移动端访问的 https 协议的数据，在完成上述步骤后，需要重复第一个步骤，并更改为选择菜单栏 `help` -> `SSL Proxying` -> `Install Charles Root Certificate on a Mobile Device or Remote Browser` 。移动端完成无线网络配置(移动端实机测试的第四步骤)后，访问[证书地址](http://charlesproxy.com/getssl)，即可完成移动端设备安装证书的操作。至此，移动端访问 https 请求，就可以在 charles 中实时显示相关抓包信息。
-
-### 将远程文件代理到本地
-
-当需要在线上环境测试展示效果，而本地程序代码不确保正确的情况下，可以将线上的文件访问地址重定向到本地的文件，从而使得线上环境真正使用的为本地需要测试的文件。
-
-`Map Local` 是将指定的网络请求代理到本地文件，在 Charles 选择菜单栏 `Tools` -> `Map Local` ，填写需要重定向的源地址以及本地的目标文件。如果网络请求较为复杂，可在请求处右键选择 `Save Response` 保存请求返回的数据到本地。
-
-#### Map From
-
-源文件相关配置， `protocol` 选择 http 或者 https 协议， `HOST` 为远程服务域名， `PATH` 为请求的路径， `Query` 为请求查询字符串
-
-#### Map To
-
-为本地文件地址，可以为单文件或者文件夹的地址
-
-注意：如果 Map From 以及 Map To 中的数据需要区分大小写，应勾取 Case-sensitive 选项。
-
-![](https://gw.alicdn.com/tfs/TB1gC1XakL0gK0jSZFtXXXQCXXa-936-838.jpg)
-
-通过以上设置，我们在访问 `http://baidu/com/test/a.js` 时，实际访问的是 `~/Desktop/a.js`
+> Chrome DevTools 的 **Sources → Overrides** 提供了等价能力，无需安装代理软件，适合纯前端资源的临时覆盖。
 
 ## 实用网站
 
-- [can i use](https://caniuse.com/) 查看一些 API 的兼容性
-- [中文版的 lighthouse](https://developers.google.com/speed/pagespeed/insights/) 测试网页性能
-- [Autoprefixer](https://autoprefixer.github.io/) 为 css 加上浏览器前缀，配套 webpack 相关插件
-- [在线可视化正则表达式测试网站](https://regexper.com)（需要科学上网）
-- [在线 js 编辑器](https://jsfiddle.net/)（需要科学上网）
+**兼容性与标准**
+
+- [Can I use](https://caniuse.com/)：查询 Web API / CSS 特性的浏览器兼容性
+- [MDN Web Docs](https://developer.mozilla.org/)：最权威的 Web 平台文档
+- [Baseline](https://web.dev/baseline)：判断某特性是否已在主流浏览器「普遍可用」
+
+**性能与质量**
+
+- [PageSpeed Insights](https://pagespeed.web.dev/)：基于 Lighthouse 的网页性能与体验评分
+- [WebPageTest](https://www.webpagetest.org/)：更细粒度的多地区、多设备性能瀑布分析
+
+**CSS / 调试小工具**
+
+- [Autoprefixer 在线版](https://autoprefixer.github.io/)：为 CSS 自动补齐浏览器前缀
+- [regex101](https://regex101.com/) / [Regexper](https://regexper.com)：正则表达式调试与可视化
+- [Transform](https://transform.tools/)：JSON↔TS、CSS↔JS 等各类格式互转
+
+**在线编辑 / 复现**
+
+- [StackBlitz](https://stackblitz.com/)：浏览器内运行真实 Node + Vite 项目，最适合复现 bug
+- [CodeSandbox](https://codesandbox.io/) / [CodePen](https://codepen.io/) / [JSFiddle](https://jsfiddle.net/)：在线代码片段与 Demo

@@ -1,177 +1,193 @@
+---
+sidebarDepth: 2
+---
+
 # Node.js
 
-本文档将会介绍我们在开发 Node.js 应用时会用到的一些工具
+本章介绍现代 Node.js 工程环境的搭建：如何管理 Node 版本、如何选对包管理器，以及日常开发中真正高频的实用 CLI 工具。
 
-## nvm
+> 选型建议（2026）：新项目优先使用 **Node.js 当前 LTS（v20 / v22）**，包管理器优先 **pnpm**，并用 **Corepack** 锁定团队一致的版本。下文会说明原因。
 
-管理 Node.js 版本，通过[nvm](https://github.com/nvm-sh/nvm)我们可以同时安装/切换不同的 Node.js 版本
+## 版本管理
 
-### 怎样使用 nvm
+同一台机器上往往需要在多个 Node 版本间切换（老项目锁定 v16，新项目用 v22）。不要手动安装/卸载，用版本管理器。
 
-步骤：
+### fnm（推荐）
 
-1. **卸载之前的 node 后安装** nvm ,使用 nvm-setup.exe 安装版，直接双击运行，同意协议后点击下一步下一步**按默认目录**安装完成；
-
-2. 进入安装的位置：C:\Users\自己的账户名\AppData\Roaming\nvm，下载小组常用 node 包库版本，解压后复制内容放置于 nvm 文件夹内根目录；
+[fnm](https://github.com/Schniz/fnm) 用 Rust 编写，跨平台、启动极快，是当前最推荐的选择。它能读取项目根目录的 `.nvmrc` / `.node-version` 自动切换版本。
 
 ```bash
-v8.11.2
-v12.18.3
-v14.18.2
-v16.16.0
+# macOS / Linux
+curl -fsSL https://fnm.vercel.app/install | bash
+# Windows (推荐 winget)
+winget install Schniz.fnm
+
+# 安装并使用某个版本
+fnm install 22
+fnm use 22
+fnm default 22
+
+# 进入项目目录自动切换（需在 shell 配置中开启 --use-on-cd）
+echo "22" > .node-version
 ```
 
-3. 切换 node 版本，以管理员方式运行 cmd （命令提示符）打开黑窗口，命令如下：
+### Volta（团队协作友好）
+
+[Volta](https://volta.sh/) 的特点是把工具版本写进 `package.json`，团队成员 `clone` 后会**自动**使用一致的 Node / 包管理器版本，无需任何手动切换。
 
 ```bash
-# 查看 nvm 可用 node 版本列表
-nvm list
-
-# 切换 node 版本为某个版本
-nvm use 16.16.0
+volta install node@22
+volta pin node@22 pnpm@9   # 版本会写入 package.json 的 "volta" 字段
 ```
 
-使用图例：
+### nvm
 
-4. 想要更多版本，访问https://registry.npmmirror.com/binary.html 地址，可用于 nvm 管理的 node 压缩文件如下所示，下载好 node-v14.18.2-win-x64.zip 解压后修改文件夹名称为 v 打头的版本号复制于 nvm 包管理目录即可使用。
-
-## nrm
-
-使用[nrm](https://github.com/Pana/nrm)可以让我们来切换不同的 npm 源而不用单独安装 cnpm 之类的库
-
-### 安装 nrm
+[nvm](https://github.com/nvm-sh/nvm)（macOS / Linux）与 [nvm-windows](https://github.com/coreybutler/nvm-windows)（Windows）是更早期、流行度很高的方案，许多老团队仍在使用。
 
 ```bash
-$ npm install -g nrm
+nvm ls                 # 查看已安装版本
+nvm install 22         # 安装指定版本
+nvm use 22             # 切换版本
+nvm alias default 22   # 设为默认
 ```
 
-### 使用命令
+> 说明：早期文档里「手动下载 zip、改文件夹名、塞进 nvm 目录」的做法已不再推荐——现代版本管理器都能自动下载安装，国内网络慢时配置镜像即可（见下文 nrm / 镜像源）。
+
+## 包管理器
+
+### pnpm（推荐）
+
+[pnpm](https://pnpm.io/) 通过全局内容寻址存储 + 硬链接，**节省大量磁盘空间、安装更快**，且默认严格的依赖隔离能避免「幽灵依赖」问题，是当前中大型项目和 Monorepo 的首选。
 
 ```bash
-$ nrm ls # 列出当前支持切换的源
-
-PS C:\Users\Administrator> nrm ls
-  npm ---------- https://registry.npmjs.org/
-  yarn --------- https://registry.yarnpkg.com/
-  tencent ------ https://mirrors.cloud.tencent.com/npm/
-  cnpm --------- https://r.cnpmjs.org/
-* taobao ------- https://registry.npmmirror.com/
-  npmMirror ---- https://skimdb.npmjs.com/registry/
-
-$ nrm use taobao # 使用taobao的源作为默认的npm源
-
-# 新增 npm 源
-
-$ nrm add <registry> <url>        Add one custom registry
-$ nvm use <registry>
+corepack enable          # 推荐用 Corepack 启用（见下）
+pnpm install
+pnpm add react           # 添加依赖
+pnpm add -D vite         # 添加开发依赖
+pnpm dlx create-vite app # 类似 npx，临时执行包
 ```
 
-## 实用模块
+### Corepack：锁定团队包管理器版本
 
-下面来介绍一些实用的 Node.js 模块
+[Corepack](https://nodejs.org/api/corepack.html) 是 Node.js 内置的工具，配合 `package.json` 中的 `packageManager` 字段，确保**所有人用同一个包管理器版本**，杜绝「我这能装、你那报错」。
 
-### dclone
-
-[dclone](https://github.com/zhangyuang/dclone)用来下载某个特定的 github 仓库的文件夹，而不是下载整个项目，可以缩短你的下载时间
-
-```bash
-$ npm i -g dclone
-$ dclone https://github.com/ykfe/egg-react-ssr/tree/dev/example/ssr-with-loadable
-```
-
-### http-server
-
-使用[http-server](https://www.npmjs.com/package/http-server)我们可以快速的创建一个本地 http server 服务，并且托管我们当前目录作为静态资源文件夹而不用特地去用 Node.js 框架来搭建一个静态资源服务
-
-#### 如何使用 http-server
-
-```bash
-$ npm install http-server -g # 安装http-server模块
-$ http-server . -p 8080 # 监听8080端口，以当前目录作为静态资源目录
-```
-
-### npx
-
-使用 npx 来让我们可以方便的调用项目的依赖模块
-
-```bash
-$ npx jest # 直接调用node_modules中的jest而不需要手动编写npm script
-$ npx create-react-app app # npx 将create-react-app下载到一个临时目录，使用以后再删除。使得你不需要全局安装
-```
-
-### optimist
-
-用于解析命令行参数
-
-```js
-var argv = require("optimist").argv;
-
-if (argv.rif - 5 * argv.xup > 7.138) {
-  console.log("Buy more riffiwobbles");
-} else {
-  console.log("Sell the xupptumblers");
+```json
+{
+  "packageManager": "pnpm@9.12.0"
 }
 ```
 
-### yargs
-
-用于开发命令行工具
-
-![](https://raw.githubusercontent.com/yargs/yargs/master/screen.png)
-
-### cloc
-
-使用 cloc 快速统计某文件夹下代码的数据, 更多参考资料查看[代码统计利器 Cloc](https://www.hi-linux.com/posts/4004.html)
-
 ```bash
-$ npm i -g cloc
-$ cloc --exclude-dir=node_modules . --exclude-ext=json,html # 统计文件类型，排除node_modules,排除json，html文件
+corepack enable   # 之后 pnpm / yarn 命令会自动匹配上面声明的版本
 ```
 
-![cloc](https://img.alicdn.com/tfs/TB1kYu2qND1gK0jSZFsXXbldVXa-1136-950.jpg)
+### 镜像源管理（nrm）
 
-### promisify
+国内网络下切换 registry 能显著提速。[nrm](https://github.com/Pana/nrm) 可在多个源之间快速切换：
 
-[util.promisify](http://nodejs.cn/api/util.html#util_util_promisify_original)是 Node.js 的官方 API，使用该 API 我们可以将 callback 形式的 Node.js API 包装为 Promise 的形式,只要符合最后一个参数是 callback，并且 callback 第一个参数是错误处理的 API 都可以通过 promisify 来包装
+```bash
+pnpm add -g nrm
+nrm ls            # 列出可用源
+nrm use taobao    # 切换到淘宝镜像（https://registry.npmmirror.com/）
+nrm add <name> <url>
+```
+
+也可以直接配置（无需额外工具）：
+
+```bash
+npm config set registry https://registry.npmmirror.com/
+pnpm config set registry https://registry.npmmirror.com/
+```
+
+## 实用 CLI 工具
+
+### npx / pnpm dlx —— 临时执行包
+
+无需全局安装即可调用包，常用于脚手架与一次性脚本：
+
+```bash
+npx create-vite@latest my-app   # 临时下载并执行，用完即弃
+pnpm dlx degit user/repo my-app # pnpm 等价用法
+npx jest                        # 直接调用本地 node_modules 中的二进制
+```
+
+### degit —— 只下载仓库内容（无 git 历史）
+
+[degit](https://github.com/Rich-Harris/degit) 用于快速拉取某个仓库（或其子目录）作为模板，不携带 `.git` 历史，比 `git clone` 更快更干净，是 `dclone` 一类工具的现代替代。
+
+```bash
+npx degit sveltejs/template my-app
+npx degit user/repo/subdir my-app   # 只拉取子目录
+```
+
+### 本地静态服务器
+
+托管当前目录为静态资源服务，调试构建产物时非常方便：
+
+```bash
+npx serve .          # 现代、零配置（推荐）
+npx http-server . -p 8080
+```
+
+### tsx —— 直接运行 TS / ESM 脚本
+
+[tsx](https://github.com/privatenumber/tsx) 基于 esbuild，可以**免编译直接运行** TypeScript 与 ESM 脚本，写工具脚本时极其顺手（替代过去 `ts-node` 的大量场景）。
+
+```bash
+npx tsx script.ts
+npx tsx watch script.ts   # 文件变更自动重跑
+```
+
+### 命令行参数解析
+
+写 CLI 工具时，用现代库解析参数与子命令：
+
+```bash
+pnpm add yargs    # 功能完整，适合复杂 CLI
+pnpm add commander
+pnpm add cac      # 轻量、API 简洁
+```
 
 ```js
-const { promisify } = require("util");
-const { exec } = require("child_process");
-const execWithPromise = promisify(exec);
-const installServer = async () => {
-  const { stdout } = await execWithPromise(`npm i -g http-server`);
-};
+import yargs from "yargs";
+import { hideBin } from "yargs/helpers";
+
+const argv = yargs(hideBin(process.argv))
+  .option("port", { alias: "p", type: "number", default: 3000 })
+  .parse();
 ```
 
-### mdv
+### cloc —— 代码量统计
 
-[mdv](https://www.npmjs.com/package/mdv)是一个用来校验 markdown 语法的 npm 模块，此模块检测的语法错误类型包括七项：插入图片时是否添加 Alt 标签，超链接是否包含链接名称，页面内跳转时是否缺失锚点，页面内跳转的地址是否包含#，锚点是否包含#，锚点是否重复定义，json、xml 语法是否解析失败。
-
-#### 安装使用
+快速统计某目录下各语言代码行数：
 
 ```bash
-$ npm i -g mdv
-$ mdv xxx.md -d # 检测md文件语法
-$ mdv xxx.md -s # 根据md生成html
+npx cloc --exclude-dir=node_modules,dist . --exclude-ext=json,html
 ```
 
-#### 错误类型
+### util.promisify —— callback 转 Promise
 
-- 重复链接 - `duplicatedAnchors[]`
-- 锚点地址错误 - `anchorsWithHash[]`
-- 空的链接 - `anchorsWithEmptyText[]`
-- img 标签缺少 alt 属性 tag - `imagesWithMissingAlt[]`
-- `yaml`, `json`, `xml` or `abnf` 语法解析错误 - `nonParsingExamples[]`
+`util.promisify` 可将「最后一个参数是 callback、callback 首参为 error」的 Node API 包装为 Promise，便于在 `async/await` 中使用。注意：很多核心模块已直接提供 Promise 版（如 `node:fs/promises`），优先使用原生 Promise API。
 
-## 使用 npm link 调试模块
+```js
+import { promisify } from "node:util";
+import { exec } from "node:child_process";
 
-熟练的使用 npm link 可以帮助我们本地调试任何开源项目，当我们的一个项目还没有发布到 npmjs.com 想在本地测试时，或者当我们想修改 React/Vue 的源码想在本地测试效果时，我们都需要使用 npm link 来进行测试。npm link 类似于 Linux 中的软链接，简单理解可以理解为一个快捷方式。使用方式：
-
-```
-$ cd vue // 进入本地clone下来的vue文件夹
-$ npm link // 如果没有全局安装过vue 此时会创建全局node_modules下的一个软链接vue指向本地clone的vue入口文件
-$ npm link vue // 在需要用调试vue模块的应用执行该命令会将当前应用的node_modules/vue指向全局node_modules/vue软链接
+const execAsync = promisify(exec);
+const { stdout } = await execAsync("pnpm i -g serve");
 ```
 
-![](https://gw.alicdn.com/tfs/TB1iEl0XKH2gK0jSZFEXXcqMpXa-1450-876.jpg)
-![](https://gw.alicdn.com/tfs/TB1QBh0XQY2gK0jSZFgXXc5OFXa-1450-860.jpg)
+## 用 npm/pnpm link 调试本地模块
+
+当你开发一个尚未发布的包，或想在本地改动并验证某个开源库（如 Vue / React）的源码时，`link` 能把全局软链接指向本地包，免去反复 `publish`。
+
+```bash
+# 在被调试的包目录
+cd my-lib
+pnpm link --global         # 创建全局软链接（npm 用 npm link）
+
+# 在使用该包的项目目录
+pnpm link --global my-lib  # 让本项目的依赖指向本地 my-lib
+```
+
+> 现代替代方案：在 **Monorepo**（pnpm workspace / Turborepo）中，包之间通过 `workspace:*` 协议直接互相引用，通常无需手动 link，更适合多包协作的项目。

@@ -57,6 +57,8 @@ module.exports = {
             "Git",
             "Chrome",
             "Whistle",
+            "VueDebug",
+            "ReactDebug",
             "Fe",
             "Vim",
             "Command",

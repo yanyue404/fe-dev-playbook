@@ -1,10 +1,4 @@
-# Whistle
-
-> https://github.com/yanyue404/blog/issues/204
-
 > [whistle 官方文档](http://wproxy.org/whistle/webui/rules.html)
-
-Whistle 最强大的代理服务器，与 Charles 相比我用 Whistle。
 
 ## 说明
 
@@ -75,13 +69,22 @@ iOS 10.3 之后需要手动信任自定义根证书，设置路径：设置> 外
 w2 start
 
 # filter， 在 Network 不会出现某些域名的请求
-/[traceback.tk.cn](http://traceback.tk.cn/)|[tia6.taikang.com/](http://tia6.taikang.com/) filter://hide
+/xxx.cn|abc/ filter://hide
 
 # req ua
-[m.aliexpress.com](http://m.aliexpress.com/) ua://{{wp_ua}}
+http://m.aliexpress.com ua://{{wp_ua}}
 
 # reqHeaders，修改请求头
-[m.aliexpress.com](http://m.aliexpress.com/) reqHeaders://{{req-headers}}
+http://m.aliexpress.com  reqHeaders://{{req-headers}}
+
+# resHeaders，修改请求头
+/https?:\/\/(cdn)\.cn/ resHeaders://{resHeaders.json}
+
+# reqBody - 请求报文
+# http://localhost:8000/api/posts reqBody://{posts.json}
+
+# resBody - 响应报文
+# http://localhost:8000/api/posts resBody://{posts.json}
 
 # 使用 内置的 Weinre 调试移动端页面，然后选择菜单栏的 Weinre 进入看到调试界面了
 # http://127.0.0.1:8899/weinre/client/#test
@@ -89,16 +92,19 @@ w2 start
 http://www.qq.com/  weinre://test
 
 # 配置规则（线上代理到本地调试）
-//[m.tk.cn/tkproperty/prd/N20210002/](http://m.tk.cn/tkproperty/prd/N20210002/)  localhost:3334/tkproperty/prd/N20210002/
+//[xxx.cn//0002/](http://xxx.cn/0002/)  localhost:3334//0002/
 
-# 单个文件代理到 values 面板（新建 local_reference.js 文件, 完全替换）
-//[mcdn.tk.cn/js/reference.js](http://mcdn.tk.cn/js/reference.js) resBody://{local_reference.js}
+# 单个文件代理到 values 面板（新建 local.js 文件, 完全替换）
+//[xxx.cn/js/reference.js](http://xxx.cn/js/reference.js) resBody://{local_reference.js}
+
+# 单个文件代理到本地的文件
+https://xx.cn/lowcode/editer.js file://D:\At-Work\lowcode\project-name\dist\editer.js
 
 # 设置 延迟响应的时间（单位：毫秒）
-https://ecuat.tk.cn/tkol-api/tkcms/selectByProductId resDelay://3000
+https://xxx.cn/api/xxxcms/selectById resDelay://3000
 
 # 修改返回码，可以模拟接口出错
-https://ecuat.tk.cn/tkol-api/tkcms/selectByProductId statusCode://500
+https://xxx.cn/api/xxxcms/selectById statusCode://500
 
 # 在网页中注入以 script 标签的形式插入，花括号的值是内置编辑器保存的文件，在主菜单 “Value” 下可找到：
 https://wq.jd.com/ jsAppend://{test.js} https://wq.jd.com/ jsAppend:///Users/myname/test/test.js
@@ -107,8 +113,27 @@ https://wq.jd.com/ jsAppend://{test.js} https://wq.jd.com/ jsAppend:///Users/myn
 https://wq.jd.com/ cssAppend://{test.css} https://wq.jd.com/ cssAppend:///Users/myname/test/test.css
 
 # log 日志分组
-http://localhost:49804/tkproperty/nprd/N20210001/ log://N20210001
+http://localhost:49804/xxx/0001/ log://0001
 
+# proxy 代理
+/github.com/ proxy://127.0.0.1:8899
+
+## html，往html文档(</body>之前)追加html标签(script,style or normal html tag)
+https://github.com/ html://{html-test} proxy://127.0.0.1:33210
+
+## js，往js响应追加脚本，如果响应是html文档，则自动用`<script></script>`包装后插入
+https://github.com/ js://{js-test} proxy://127.0.0.1:33210
+
+## css，往css响应追加样式，如果响应是html文档，则自动用`<style></style>`包装后插入
+## `/`可以起到仅对首页追加的效果
+https://github.com/ css://{css-test}
+
+## resReplace，替换响应的某些字符串
+## 一般可用来快速验证某些功能
+m.aliexpress.com resReplace://{res-replace}
+
+## 组合技能 修改接口为 js
+https://xxx.com/auth/code  resBody://{hack.js} resType://text/javascript
 ```
 
 ```js
@@ -156,6 +181,27 @@ body {
     "referer":"https://vk.com/",
     "User-Agent":"Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1 AliApp(H/5)"
   }
+
+{resHeaders.json}
+{ "Access-Control-Allow-Origin": "*" }
+
+{html-test}
+ <script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js" onload="new VConsole()"></script>
+
+ <script>
+   alert('hello world!')
+ </script>
+
+{js-test}
+ alert('hello world!')
+
+{css-test}
+ * {
+    background: pink
+  }
+
+{res-replace}
+  <meta name="screen-orientation" content="portrait">: <meta name="apple-itunes-app" content="app-id=436672029">
 ```
 
 **其他命令**
@@ -177,6 +223,8 @@ $ w2 restart
     Q: 苹果手机代理已配置，且已经信任证书打开调试显示无法链接？
     A: 苹果手机还需要手动开启 whistle 的证书信任。参下图手动开启。
 
+警告，部分 ios 版本无法设置证书信任，[讨论](https://discussionschinese.apple.com/thread/255795170?answerId=260828153322&sortBy=rank&page=2#260828153322)（我的手机 iphone 12 升级至 18.1.1 后不可用，升级至 18.2.1 后可用，原始版本 15.1.1 可用）
+
 <img src="https://github.com/yanyue404/blog/blob/master/assets/whistle/trust-certificate.jpg?raw=true" width="50%" height="50%">
 
 2. 真机样式调试
@@ -184,7 +232,7 @@ $ w2 restart
 在标签栏选择 **Weinre** 标签进入，选择 Targets 的链接进入页面。
 
 ···bash
-https://f.tk.cn/tkproperty/nprd/N20220012/ weinre://0012
+https://xxx.cn//0012/ weinre://0012
 
 ````
 
@@ -197,11 +245,11 @@ https://f.tk.cn/tkproperty/nprd/N20220012/ weinre://0012
 
 1. 如果配置完代理，手机无法访问，可能是 whistle 所在的电脑防火墙限制了远程访问 whistle 的端口，关闭防火墙或者设置白名单。
 
-4. 安装证书后，如无法正常捕获请求，需要将连接笔记本电脑的 wifi 设为 **可信任网络**。
+2. 安装证书后，如无法正常捕获请求，需要将连接笔记本电脑的 wifi 设为 **可信任网络**。
 
 **微信公众号**
 
-1. 启动 whistle 后，先配置**微信开发者工具**代理:
+3. 启动 whistle 后，先配置**微信开发者工具**代理:
 
 最上边一栏 ---- 设置 ---- 代理设置 ---- 设置本机 ip 加 端口号 8899
 
@@ -209,7 +257,7 @@ https://f.tk.cn/tkproperty/nprd/N20220012/ weinre://0012
 
 ```bash
 # 线上混淆代码代理到本地源码
-//mcdn.tk.cn/tk-online/assets/public-js/lib/property/wx-util.js  file://C:\Users\Administrator\Desktop\wx.util.js
+//xxx.cn//wx-util.js  file://C:\Users\Administrator\Desktop\wx-util.js
 ````
 
 5. 查看代理是否生效
@@ -222,7 +270,27 @@ https://f.tk.cn/tkproperty/nprd/N20220012/ weinre://0012
 
 配置好后 支持 h5 访问类型的抓包，如： Firefox 浏览器，微信里的公众号、小程序等。
 
+## 线上调试
+
+在线上的生产环境使用 `hidden-source-map` 的情况下如何映射源码文件。
+
+```bash
+# 线上 source-map 定位源码
+# 域名配置：www.guangtest.com 127.0.0.1
+# 代理错误 js 文件，在文件末尾加上 //# sourceMappingURL=http://域名:端口/dist/index.js.map
+
+# 例：//# sourceMappingURL=http://www.guangtest.com:3000/dist/_nuxt/hulvla08-8ce21d5db8216aacf81f.js.map
+```
+
+## whistle 插件使用
+
+```bash
+# 插件注入 vconsole https://github.com/whistle-plugins/whistle.inspect
+//xxx.cn whistle.inspect://vconsole
+```
+
 ## 参考文档
 
 - [官方文档 - whistle 安装启动](http://wproxy.org/whistle/install.html)
 - [官方文档 - 安装根证书](http://wproxy.org/whistle/webui/https.html)
+- https://github.com/yanyue404/fe-debug-exercize/tree/main/online-error-debug

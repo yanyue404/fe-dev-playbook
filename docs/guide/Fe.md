@@ -1,125 +1,193 @@
+---
+sidebarDepth: 2
+---
+
 # 前端开发
 
-本章节介绍前端开发中常见的问题以及解决方案，欢迎补充
+本章介绍前端开发中高频遇到的问题与现代解决方案，欢迎补充。
 
 ## 跨域
 
-本章简单介绍一下什么是跨域以及如何解决跨域
-
 ### 什么是跨域
 
-跨域基本是每一个前端工程师开发中都会遇到的问题，跨域的基本概念和原因这里简单概括下，协议域名端口三者任一不一致都会导致跨域。需要清楚的是跨域限制是浏览器给我们的安全策略的限制，在服务端是没有该限制的。
+跨域是几乎每个前端都会遇到的问题：**协议、域名、端口三者任一不同**，浏览器就会基于同源策略（Same-Origin Policy）拦截响应。需要明确两点：
 
-### 如何解决跨域
+1. 这是**浏览器**为保护用户而施加的安全限制，服务端之间互相请求并无此限制。
+2. 请求其实通常**已经发出、服务端也响应了**，只是浏览器拦下了返回结果（简单请求场景）。
 
-大部分网络上的答案都是让后端协助来修改设置`Access-Control-Allow-Origin`,这里我们不介绍这种方式，只介绍在几乎没有后端帮助的情况下如何解决跨域
+### 解决方案
 
-#### JSONP
+#### CORS（首选，生产标准做法）
 
-使用 JSONP 是前端解决跨域最快的方式，但是这种方式仍然需要后端小小支持下，这里我们给一个最简单的 JSONP 实现方式
+跨域的标准解法是服务端在响应头中声明允许的来源。这是生产环境唯一规范、可控的方式：
+
+```http
+Access-Control-Allow-Origin: https://your-site.com
+Access-Control-Allow-Methods: GET, POST, PUT, DELETE
+Access-Control-Allow-Headers: Content-Type, Authorization
+```
+
+> 携带 Cookie 的跨域请求需同时设置 `Access-Control-Allow-Credentials: true`，且 `Allow-Origin` 不能为 `*`。非简单请求（带自定义头、PUT/DELETE 等）会先发一个 `OPTIONS` 预检请求。
+
+#### 开发环境：本地代理（最常用）
+
+本地开发时，最方便的是用构建工具自带的 dev server 代理：浏览器请求同源的本地地址，由 dev server 在 Node 层转发到目标接口，从而绕过浏览器限制。
 
 ```js
-var url = `https://api.test.com?jsoncallback=jsonpCb`;
-var script = document.createElement("script");
-script.src = url;
-document.getElementsByTagName("body")[0].appendChild(script);
-function jsonpCb(res) {
-  console.log(`接口数据${res}`);
+// Vite: vite.config.js
+export default {
+  server: {
+    proxy: {
+      "/api": {
+        target: "https://api.example.com",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
+      },
+    },
+  },
+};
+```
+
+```js
+// webpack-dev-server / Vue CLI: devServer.proxy 同理
+```
+
+其本质都是「本地起一个 Node 服务转发请求」。也可以自己用 Koa / Express 写一个最小代理：
+
+```js
+import Koa from "koa";
+import Router from "@koa/router";
+
+const app = new Koa();
+const router = new Router();
+
+router.get("/api/getInfo", async (ctx) => {
+  const res = await fetch("https://api.example.com/getInfo");
+  ctx.body = await res.json();
+});
+
+app.use(router.routes()).use(router.allowedMethods());
+app.listen(3000);
+```
+
+#### JSONP（已过时，仅作了解）
+
+JSONP 利用 `<script>` 标签不受同源策略限制的特性，但**只支持 GET、安全性差、错误处理弱**，现代项目不应再使用，仅在维护老系统时可能遇到：
+
+```js
+function jsonp(url, cb) {
+  const script = document.createElement("script");
+  window[cb] = (data) => {
+    console.log(data);
+    document.body.removeChild(script);
+  };
+  script.src = `${url}?callback=${cb}`;
+  document.body.appendChild(script);
 }
 ```
 
-#### Chrome 插件
+#### 浏览器插件 / 关闭安全策略
 
-[Access-Control-Allow-Origin](https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf?hl=zh-CN)
-本质是给接口的 response header 中添加`Access-Control-Allow-Origin: *`, 底层原理是通过 Chrome 提供的 Api 来实现
+诸如「Allow CORS」之类的浏览器插件可临时绕过限制，仅适合个人本地调试，**切勿用于生产或要求团队成员安装**——它本质是降低浏览器安全防护。
 
-#### Node 代理
+## 纯前端导出文件
 
-大部分前端框架提供给你的 proxy 功能本质上都是使用了`webpack-dev-server`的 proxy 功能，而`webpack-dev-server`的 proxy 功能本质上是本地启动了一个 Node 服务来实现请求的转发
-我们也可以自己用`egg|koa`框架来创建一个简单的本地 Node 服务
+### 导出 Excel
 
-```js
-// koa.js
-const Koa = require('koa')
-const router = require('koa-router')
-const app = new Koa()
-router.get('/api/getInfo', async (ctx) => {
-    const res = await http.get('http://api.test.com/getInfo')
-    ctx.body = res
-})
-app
-  .use(router.routes())
-  .use(router.allowedMethods())
-app.listen(3000)
-
-// fe.js
-fetch('http://api.test.com/getInfo') 替换为 fetch(`http://localhost:3000/api/getInfo`)
-```
-
-## 纯前端下载 excel
-
-本节介绍在没有后端服务的情况下如何将数据下载为 excel
-使用[sheetJs](https://github.com/SheetJS/sheetjs)
+无后端时，用 [SheetJS](https://github.com/SheetJS/sheetjs) 可在浏览器端直接生成 Excel。注意接口数据通常需要先整理为「对象数组」或「二维数组」：
 
 ```js
-$ npm install xlxs // <script lang="javascript" src="dist/xlsx.full.min.js"></script>
+// npm install xlsx
+import * as XLSX from "xlsx";
 
-const filename = 'file.xlsx' // 文件名称
 const data = [
-    {a: 1, b:2, c: 3},
-    {a: 1, b:2, c: 3}
-    {a: 1, b:2, c: 3}
-] // 此时数据为一般接口返回的数据格式，不符合sheetJs要求，需要转换为二维数组
-const dataArr = []
-dataArr.push([
-    'a数据',
-    'b数据',
-    'c数据',
-]) // 第一行表头名称
-data.map(item => {
-    const arr = []
-    for (const i in item) {
-        arr.push(item[i])
-    }
-    dataArr.push(arr)
-})
-const wsName = 'Sheet1' // Excel第一个sheet的名称
-const wb = XLSX.utils.book_new()
-const ws = XLSX.utils.aoa_to_sheet(dataArr)
-XLSX.utils.book_append_sheet(wb, ws, wsName) // 将数据添加到工作薄
-XLSX.writeFile(wb, filename) // 导出Excel
+  { name: "张三", age: 18, city: "北京" },
+  { name: "李四", age: 20, city: "上海" },
+];
+
+// json_to_sheet 会自动把对象 key 作为表头
+const worksheet = XLSX.utils.json_to_sheet(data);
+const workbook = XLSX.utils.book_new();
+XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+XLSX.writeFile(workbook, "file.xlsx");
 ```
 
-## 代码风格
+如需自定义中文表头，可改用 `aoa_to_sheet`（数组的数组），首行即为表头：
 
-代码风格一直是程序员届争论不休的话题，这里根据本人多年开发经验以及数百个项目的开发体验，强烈建议抛弃 eslint,prettier，不要让你的项目充斥着代码风格配置文件, 这里建议大家不要盲目模仿著名开源项目，这里以[React](https://github.com/facebook/react)为例,根目录下的独立文件有十几个与代码风格有关的文件就高达 5 个，实在是让人看了就头大
-<img src="https://img.alicdn.com/tfs/TB1uw5WmKH2gK0jSZJnXXaT1FXa-590-1500.jpg"  style="height:256px;">
+```js
+const aoa = [
+  ["姓名", "年龄", "城市"],
+  ...data.map((d) => [d.name, d.age, d.city]),
+];
+const ws = XLSX.utils.aoa_to_sheet(aoa);
+```
 
-### Standardjs
+### 通用文件下载（Blob）
+
+对于 JSON、CSV、文本等，用 `Blob` + `URL.createObjectURL` 即可，无需任何依赖；记得释放对象 URL 防止内存泄漏：
+
+```js
+function download(filename, content, type = "text/plain") {
+  const blob = new Blob([content], { type });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+download("data.json", JSON.stringify(data, null, 2), "application/json");
+```
+
+## 代码规范与格式化
+
+代码风格曾是程序员之间争论不休的话题，但在现代工程中，结论已经清晰：**风格之争应该交给工具自动解决，而不是靠人去吵或去记**。早期「配置文件太多、看了头大」的痛点真实存在，但答案不是「抛弃 Lint」，而是**用更少配置、更高性能的现代工具收敛它**。
+
+资深的取舍是：**让格式化（Format）与质量检查（Lint）各司其职，并尽量零配置**。
+
+### 推荐方案（按场景）
+
+#### Biome —— 一体化、极速、近零配置（新项目首选）
+
+[Biome](https://biomejs.dev/zh-cn/) 用 Rust 编写，**一个工具同时搞定格式化与 Lint**，速度比 ESLint + Prettier 快一个数量级，配置极简。它正是「省心」与「规范」之间最好的平衡点：
 
 ```bash
-$ npm i -g standard@13.0.0
+pnpm add -D --save-exact @biomejs/biome
+pnpm biome init
+pnpm biome check --write .   # 一条命令完成格式化 + 修复
 ```
 
-这里我们着重介绍一下[Standardjs@13.0.0](https://standardjs.com/readme-zhcn.html)这个代码规范工具，为什么我们使用它而不是 eslint 呢，这里我引用 standardjs 官方的介绍
+#### ESLint + Prettier —— 生态最成熟（团队/复杂项目）
 
-- 无须配置。 史上最便捷的统一代码风格的方式，轻松拥有。
-- 自动代码格式化。 只需运行 standard --fix 从此和脏乱差的代码说再见。
-- 提前发现风格及程序问题。 减少代码审查过程中反反复复的修改过程，节约时间。
+需要丰富插件生态（React Hooks 规则、import 排序、可访问性检查等）时，仍是事实标准。ESLint 9 的 **Flat Config**（`eslint.config.js`）已大幅简化配置，配合各框架官方预设几乎开箱即用：
 
-如果我不同意某条规则，可以改吗？
+- **Prettier** 负责格式化（缩进、引号、换行），它是「有主见、不可配太多」的，恰好终结风格之争。
+- **ESLint** 负责发现潜在问题（未使用变量、错误的 Hook 依赖等），用 `eslint-config-prettier` 关闭与 Prettier 冲突的格式规则，各司其职。
 
-<span style="color:red">不行。制定这套 standard 规范的目的就是让大家都不必再花时间浪费在无谓的代码风格之争上面了。关于缩进该用制表符还是空格这个问题已经争论了很久了，永远也没有答案。争论这个都可以把需求提前写完了。遵循 standard 规范，你就不用再犹豫了，毕竟不管怎样争论总归会选择一种风格的。希望大家也能在个人语义和普适价值上做一个权衡。</span>
+```bash
+pnpm add -D eslint prettier eslint-config-prettier
+```
 
-如果你非要自己去配置成百上千项的 ESLint 规则，那你可以直接使用 eslint-config-standard 来将个人配置包装在上层。
+#### oxlint —— 超快的 Lint 补充
 
-小贴士：<span style="color:red">选择 standard 然后保持吧。把时间留下来解决其他有意义的问题！(^\_\_\_\_^)/</span>
+[oxlint](https://oxc.rs/docs/guide/usage/linter.html) 同样基于 Rust，零配置、速度极快，适合在大型仓库或 CI 中做快速一遍扫描，与现有 ESLint 共存。
 
-### 使用版本
+### 落地建议
 
-这里建议使用standardjs@13.0.0而不是@14.0.0, 其中 14.0.0 中新增的几个 React 的开发规则个人觉得十分不合理，影响开发体验。Ref [#1447](https://github.com/standard/standard/issues/1447)
+无论选哪套，**关键是接入自动化，让规范无感生效**：
 
-#### 更好的使用 Standardjs
+1. **编辑器保存即格式化**：VS Code 安装对应插件，开启 `editor.formatOnSave`，并设置默认 formatter。
+2. **提交前自动校验**：用 [husky](https://typicode.github.io/husky/) + [lint-staged](https://github.com/lint-staged/lint-staged) 只对暂存文件跑检查，快且不阻塞。
+3. **CI 兜底**：在流水线里跑一遍 `lint` / `format --check`，防止不规范代码合入主干。
 
-在 VS Code 安装 standardjs 插件后，我们还需要进行一些配置来启用 standardjs，首先要保证你在全局或者当前目录安装了 standard 模块，然后
-`cmd + ,` 打开配置，添加 `"standard.autoFixOnSave": true, "standard.enable": true,` 来让 VS Code 启用 standard，此时在你不符合规范的地方会给你高亮提示，并且开启保存自动格式化功能，在你保存文件时自动格式化你的文件。
+```json
+// package.json
+{
+  "lint-staged": {
+    "*.{js,ts,jsx,tsx,vue}": "biome check --write"
+  }
+}
+```
+
+> 一句话总结：不要把精力浪费在风格争论上，但也不要因噎废食地放弃工具。选一套现代化、低配置的方案（Biome 或 ESLint Flat Config + Prettier），接入「保存即格式化 + 提交前校验 + CI 兜底」，然后把时间还给真正有价值的问题。

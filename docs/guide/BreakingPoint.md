@@ -4,87 +4,79 @@ sidebarDepth: 2
 
 # 断点调试
 
-1 小时开发应用，6 小时在 debug。是否迅速的找出代码中的 bug 是决定开发效率的关键因素。大部分人在调试应用时还是用传统的 `console.log` 的方式，这种方式只适用于比较简单的应用，一旦应用改的复杂程度上升，这种方式无疑是低效的。使用断点进行 debug 是我们日常开发中必须要掌握的技巧，比起 `console.log` 更加的高效。如何调试 ts 文件请看[本章节](http://fe.surge.sh/guide/Ts.html#%E5%A6%82%E4%BD%95%E8%B0%83%E8%AF%95ts%E6%96%87%E4%BB%B6)
+1 小时写应用，6 小时在 debug——能否快速定位问题，直接决定了开发效率。很多人调试时仍只靠 `console.log`，这对简单逻辑够用，但随着应用复杂度上升会变得低效且难以追踪上下文。**断点调试**能让你在暂停点查看完整调用栈、作用域变量、并逐步执行，是必须掌握的核心技能。
 
-## 调试类型
+> TypeScript / 现代构建产物的调试依赖 **Source Map**，请确保开发环境开启了 sourcemap（Vite 默认开启）。如何调试 TS 文件可参考 [Ts 章节](http://fe.surge.sh/guide/Ts.html)。
 
-针对不同的场景不同的应用，开启断点调试的方法也不一样。目前主要分为
+## 调试场景概览
 
-- 本地调试 Launch Program 简单说，就是直接执行，上文最简单的断点调试都属于这种模式
-- 远程调试 Attach to Process 简单说，是调试某个已启动的线程, 常见的场景就是调试启动的 http-server
+| 场景 | 方式 | 说明 |
+| --- | --- | --- |
+| 浏览器中的前端代码 | Chrome DevTools / VS Code | 调试页面 JS / TS、框架组件 |
+| 直接运行的 Node 脚本 | Launch（启动调试） | VS Code 直接启动并断点 |
+| 已启动的 Node 进程 | Attach（附加调试） | 附加到正在运行的服务（如 dev server） |
 
-下面让我们先来介绍一下大部分场景下如何开启使用本地调试，远程调试方式我们着重介绍在 VS Code 中如何调试
+现代前端开发中，**99% 的场景只需掌握 VS Code 的两种方式：JavaScript Debug Terminal 与 Auto Attach**。下面从原理到实践依次介绍。
 
-### node-debug
+## 浏览器端调试（Chrome DevTools）
 
-已废弃被 `node inspect` 代替，不多介绍
+打开 DevTools（`F12`）→ **Sources** 面板，几种常用打断点的方式：
 
-### node-inspect
+- 在源码行号处点击设置**行断点**；配合 Source Map 可直接在 `.ts` / `.vue` 源码上打断点。
+- 代码中写 `debugger;` 语句，命中时自动暂停。
+- **条件断点**：右键行号 → Add conditional breakpoint，仅在表达式为真时暂停（如 `id === 42`），避免循环里反复手动跳过。
+- **DOM / 事件 / XHR 断点**：在 Elements、Sources 右侧面板中，可对「DOM 变化」「特定事件」「网络请求」设断点——排查「是谁改了这个节点 / 触发了这个请求」时极其有用。
+- **Logpoints（日志点）**：不暂停、只在命中时打印，等价于「不污染源码的 console.log」。
 
-使用 Node.js 自带的 inspect 功能来开启断点调试
+## Node.js 调试
 
-#### 使用方式
+### node --inspect + Chrome DevTools
 
-```js
-// break.js
-const foo = 1;
-const bar = foo + 1;
-debugger; // 功能类似于浏览器中的断点
-console.log(bar);
-```
-
-```
-$ node inspect break.js
-```
-
-此时会显示 debug 界面
-
-![](https://img.alicdn.com/tfs/TB12k.CcAY2gK0jSZFgXXc5OFXa-1134-856.jpg)
-
-#### 用法
-
-显示 debug 界面后，我们通过键盘来进行不同的操作，这里我们介绍最常用的几项操作
-
-- n 单步执行
-- c 继续执行，即跳到下一个断点
-- s 单步调试 点击后进入到当前方法的内部调试
-- o 单步跳出 跳出当前调试的方法，与单步调试对应
-- repl 进入 repl(交互解释器)环境，此时可以查看某一个变量的值
-
-#### 总结
-
-此方法过于繁琐低效，以了解为主，知道有这种调试方法即可。在一些远程服务器上，我们有时候会用到该方法来进行调试
-
-### Chrome + node --inspect
-
-借助 Chrome 的开发工具让我们可以在 Chrome 中进行断点调试
-
-#### 使用方式
+Node 内置 Inspector 协议，可借助 Chrome 调试：
 
 ```bash
-$ node --inspect break.js # 启用debug
-$ node --inspect-brk break.js # 启用debug并在第一行暂停，即默认第一行设置了断点，建议使用这种方式来启动
+node --inspect break.js        # 启用调试
+node --inspect-brk break.js    # 启用调试并在首行暂停（推荐，便于在执行前打断点）
 ```
 
-打开 `chrome://inspect/#devices` , 进入到熟悉的界面，此时是 `远程调试` 模式
+打开 `chrome://inspect`，点击对应目标的 **inspect** 即可进入熟悉的 DevTools 界面。
 
-![](https://img.alicdn.com/tfs/TB17cIHcBv0gK0jSZKbXXbK2FXa-1346-624.png)
-![](https://img.alicdn.com/tfs/TB10VoIcxv1gK0jSZFFXXb0sXXa-1514-534.png)
+### node inspect（终端内调试）
 
-#### 总结
+无图形界面（如远程服务器）时的兜底方案，纯命令行交互：
 
-此种方式比较常见，我们经常会在 Chrome 中进行 debug，Chrome 的调试功能也是无比强大
+```bash
+node inspect break.js
+```
 
-### 借助 VS Code
+常用命令：`n`（单步）、`c`（继续到下一断点）、`s`（步入）、`o`（步出）、`repl`（进入交互环境查看变量）。日常优先用 VS Code，了解此法即可。
 
-借助目前的前端开发第一工具，我们可以很方便的来进行断点调试
+## VS Code 调试（推荐）
 
-#### 本地调试
+VS Code 是前端调试的第一工具，其内置的 JavaScript 调试器开箱即用、能力强大。
 
-`cmd + 4` 打开调试菜单栏，选择 `添加配置` -> `启动程序`
+### 方式一：JavaScript Debug Terminal（最省心）
 
-![](https://img.alicdn.com/tfs/TB1e8sMcrH1gK0jSZFwXXc7aXXa-1364-668.png)
-生成如下调试配置
+打开命令面板（`Ctrl/Cmd + Shift + P`）→ 运行 **「Debug: JavaScript Debug Terminal」**，在这个特殊终端里**像平时一样运行任何命令**，VS Code 会自动附加调试器并命中你在编辑器里打的断点：
+
+```bash
+# 在 JavaScript Debug Terminal 中直接运行
+node script.js
+npm run dev
+npx vitest
+```
+
+无需编写任何配置文件，是日常调试 npm scripts、测试、CLI 脚本的首选。
+
+### 方式二：Auto Attach（自动附加）
+
+命令面板 → **「Debug: Toggle Auto Attach」**，开启后**普通集成终端**里运行的 Node 进程也会被自动附加调试器，适合「已经习惯用普通终端跑命令」的工作流。
+
+### 方式三：launch.json（需要可复用、可共享的配置时）
+
+当调试入口固定、或希望把配置随项目提交、与团队共享时，使用 `.vscode/launch.json`。`F5` 启动调试。
+
+**启动调试（Launch）**——由 VS Code 启动并调试一个脚本：
 
 ```json
 {
@@ -93,56 +85,47 @@ $ node --inspect-brk break.js # 启用debug并在第一行暂停，即默认第�
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch Program",
-      "program": "${workspaceFolder}/break.js" // 选择工作目录下的break.js
-      // "program": "${file}" 使用变量来获取当前打开的文件
+      "name": "Debug current file",
+      "program": "${file}",
+      "skipFiles": ["<node_internals>/**"]
     }
   ]
 }
 ```
 
-按 `F5` 启动调试，出现熟悉的界面
+**附加调试（Attach）**——附加到已用 `--inspect` 启动的进程：
 
-![](https://img.alicdn.com/tfs/TB17pkOcuH2gK0jSZJnXXaT1FXa-1002-346.png)
-
-#### 远程调试
-
-这里我们以 express 应用为例，我们在本地新建项目并且启动服务
-
-```bash
-$ npm install express-generator -g
-$ express --view=pug myapp
-$ cd myapp
-$ npm i
-$ npm start
+```json
+{
+  "type": "node",
+  "request": "attach",
+  "name": "Attach to process",
+  "port": 9229
+}
 ```
 
-通过以上命令，我们新建了一个 express 应用并且启动。点击齿轮按钮，打开 launch.json
+启动服务时带上 inspect 端口，再用上面的配置附加即可：
 
-![](https://gw.alicdn.com/tfs/TB1iKQHXxv1gK0jSZFFXXb0sXXa-1734-628.png)
+```bash
+node --inspect-brk server.js   # 默认监听 9229 端口
+```
 
-点击绿色箭头，选择添加配置，选择附加到进程选项
+## 断点操作面板
 
-![](https://gw.alicdn.com/tfs/TB1hUEHXrj1gK0jSZFuXXcrHpXa-1054-716.png)
+调试暂停后，控制按钮从左到右通常为：
 
-按 `F5` 启动 debug，选择第一个进程
+- **继续（Continue, F5）**：执行到下一个断点。
+- **单步跳过（Step Over, F10）**：执行当前行，不进入函数内部。
+- **单步步入（Step Into, F11）**：进入当前行所调用函数的内部。
+- **单步步出（Step Out, Shift+F11）**：执行完当前函数并返回调用处。
+- **重启 / 停止**：重新开始或结束调试会话。
 
-![](https://gw.alicdn.com/tfs/TB1kkIGXAT2gK0jSZFkXXcIQFXa-1438-662.jpg)
+配合左侧的 **变量（Variables）**、**监视（Watch）**、**调用堆栈（Call Stack）** 面板，即可完整掌握运行时状态。
 
-浏览器中访问 `http://localhost:3000` VS Code 就能够检测到触发断点，接下来就是我们熟悉的界面
+## 小结
 
-![](https://gw.alicdn.com/tfs/TB1yHgIXrr1gK0jSZFDXXb9yVXa-1122-436.jpg)
+- 浏览器代码用 **Chrome DevTools**，善用条件断点、DOM/XHR 断点与 Logpoints。
+- Node 与脚本调试，优先 VS Code 的 **JavaScript Debug Terminal** 或 **Auto Attach**，几乎零配置。
+- 需要可共享配置时再写 `launch.json`，理解 `launch` 与 `attach` 的区别即可。
 
-### 断点调试类型
-
-这里说一下从左到右我们的断点调试类型分为 4 种
-
-- 继续调试 点击后代码会执行到下一个断点所在位置，如果没有下一个断点，则认为该次请求执行完毕
-- 单步跳过 点击后会跳到当前代码下一行继续执行，不会进入到方法内部
-- 单步调试 点击后进入到当前方法的内部调试，例如在 res.render 这一行中执行单步调试，会进入到 res.render 方法内部进行调试
-- 单步跳出 跳出当前调试的方法，与单步调试对应
-
-## 总结
-
-我们介绍了本地调试与远程调试两种场景，以及几种开启断点调试的方式，以上几种方式以了解为主，建议熟练掌握一种 VS Code 中如何使用断点调试的方式即可, 需要了解每个配置项的含义。
-如果想要更进一步详细的了解 debug 的原理，可以查看[node-debug-tutorial](https://i5ting.github.io/node-debug-tutorial/#1)
+想深入了解调试原理，可参考 [node-debug-tutorial](https://i5ting.github.io/node-debug-tutorial/#1) 与 [VS Code 官方调试文档](https://code.visualstudio.com/docs/editor/debugging)。
