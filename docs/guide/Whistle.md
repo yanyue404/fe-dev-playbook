@@ -1,3 +1,9 @@
+---
+sidebarDepth: 2
+---
+
+# Whistle
+
 > [whistle 官方文档](http://wproxy.org/whistle/webui/rules.html)
 
 ## 说明
