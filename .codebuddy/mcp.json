@@ -1,0 +1,30 @@
+{
+  "mcpServers": {
+    "chrome-devtools": {
+      "autoApprove": [],
+      "timeout": 120000,
+      "command": "C:\\Users\\Administrator\\AppData\\Roaming\\nvm\\v22.12.0\\node.exe",
+      "args": [
+        "C:\\Users\\Administrator\\AppData\\Roaming\\nvm\\v22.12.0\\node_modules\\npm\\bin\\npx-cli.js",
+        "-y",
+        "chrome-devtools-mcp@1.12.0",
+        "--browserUrl=http://127.0.0.1:9222"
+      ],
+      "type": "stdio",
+      "disabled": false
+    },
+    "Playwright MCP Server": {
+      "autoApprove": [],
+      "timeout": 120000,
+      "command": "cmd",
+      "args": [
+        "/c",
+        "npx",
+        "-y",
+        "@executeautomation/playwright-mcp-server@1.0.12"
+      ],
+      "type": "stdio",
+      "disabled": false
+    }
+  }
+}
