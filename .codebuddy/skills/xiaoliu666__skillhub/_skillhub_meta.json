@@ -1,0 +1,15 @@
+{
+  "slug": "xiaoliu666",
+  "name": "C盘清理转移大师",
+  "version": "1.0.0",
+  "installedAt": 1794968560168,
+  "source": "skillhub",
+  "namespace": "user_07db7e52",
+  "canonicalName": "@user_07db7e52/xiaoliu666",
+  "iconSource": "https://cloudcache.tencent-cloud.com/qcloud/ui/static/other_external_resource/62f73a9b-1aca-4f8e-921d-6102e258c768.png",
+  "labels": {
+    "requires_api_key": "false"
+  },
+  "iconLocalPath": "C:\\Users\\Administrator\\.workbuddy\\skills\\xiaoliu666__skillhub\\_icon.png",
+  "iconDownloadedFrom": "https://cloudcache.tencent-cloud.com/qcloud/ui/static/other_external_resource/62f73a9b-1aca-4f8e-921d-6102e258c768.png"
+}
